@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-
-=======
->>>>>>> fabianBranch
 # Bienvenidos!
 Proyecto final de makaia usando todos los conocimientos adquiridos en el bootcamp
 # Tecnologias implementadas
