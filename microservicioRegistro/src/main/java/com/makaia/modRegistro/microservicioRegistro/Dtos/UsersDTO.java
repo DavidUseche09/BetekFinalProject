@@ -1,9 +1,11 @@
 package com.makaia.modRegistro.microservicioRegistro.Dtos;
 
+import com.makaia.modRegistro.microservicioRegistro.Entities.Roles;
+
 public class UsersDTO {
     private String email;
     private String password;
-    private  Long rol_id;
+    private Long rol_id;
 
     public UsersDTO() {
     }
