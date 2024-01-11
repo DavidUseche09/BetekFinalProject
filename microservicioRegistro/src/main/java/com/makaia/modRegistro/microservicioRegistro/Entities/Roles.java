@@ -23,6 +23,9 @@ public class Roles {
         this.descripcion = descripcion;
     }
 
+    public Roles(String descripcion) {
+    }
+
     public Long getId() {
         return id;
     }
