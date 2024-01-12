@@ -32,8 +32,6 @@ public class Aspirante {
     @Column
     private String Direccion;
     @Column
-    private int Estrato;
-    @Column
     private String UltimoTitulo;
     @Column
     private String OcupacionSi;
@@ -61,7 +59,6 @@ public class Aspirante {
         Departamento = departamento;
         Ciudad = ciudad;
         Direccion = direccion;
-        Estrato = estrato;
         UltimoTitulo = ultimoTitulo;
         OcupacionSi = ocupacionSi;
         TiempoLibre = tiempoLibre;
@@ -159,14 +156,6 @@ public class Aspirante {
         Direccion = direccion;
     }
 
-    public int getEstrato() {
-        return Estrato;
-    }
-
-    public void setEstrato(int estrato) {
-        Estrato = estrato;
-    }
-
     public String getUltimoTitulo() {
         return UltimoTitulo;
     }
@@ -240,6 +229,9 @@ public class Aspirante {
     Salario_Actual salario_actual;
     @ManyToOne (optional = false)
     Bootcamp_Info bootcamp_info;
-
+    @ManyToOne (optional = false)
+    Entrenamiento entrenamiento;
+    @ManyToOne (optional = false)
+    Estrato estrato;
 
 }

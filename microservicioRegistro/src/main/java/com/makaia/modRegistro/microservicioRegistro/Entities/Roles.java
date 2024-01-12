@@ -12,7 +12,7 @@ public class Roles {
     protected Long id;
     @Column
     private String descripcion;
-    @OneToMany(mappedBy = "Rol")
+    @OneToMany(mappedBy = "rol")
     List<Usuario> usuarios;
 
     public Roles() {
