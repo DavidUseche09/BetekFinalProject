@@ -20,10 +20,6 @@ public class UserService {
         this.repository = repository;
         this.rolesRepository = rolesRepository;
     }
-
-
-
-
     @Autowired
     PasswordEncoder passwordEncoder;
     public Usuario crearUsuario(UsersDTO dto){

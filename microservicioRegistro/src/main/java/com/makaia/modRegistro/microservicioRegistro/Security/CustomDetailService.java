@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -17,7 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class CustomDetailService {
+public class CustomDetailService implements UserDetailsService {
 @Autowired
     UsuarioRepository usuarioRepository;
 
@@ -31,7 +32,7 @@ public UserDetails loadUserByUsername (String email) throws UsernameNotFoundExce
      rol.add(new Roles(user.getRol().getDescripcion()));
     UserDetails userCreate = User.withUsername(user.getEmail())
             .password(user.getPassword())
-            .roles(user.getRol().getDescripcion())
+            .roles("ROLE_"+user.getRol().getDescripcion())
             .build();
     return userCreate;
 }
