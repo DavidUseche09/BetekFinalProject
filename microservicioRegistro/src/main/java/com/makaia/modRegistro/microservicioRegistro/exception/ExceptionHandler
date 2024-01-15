@@ -1,0 +1,66 @@
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.ControllerAdvice;
+
+
+import java.time.ZonedDateTime;
+import java.time.ZoneId;
+
+
+@ControllerAdvice
+public class ExceptionHandler {
+
+
+    //Esta excepción es cuando la petición es incorrecta
+    @ExceptionHandler(value ={ApiException.class})
+    public ResponseEntity<Object>handleApi(ApiException e) {
+        ErrorResponse error = new ErrorResponse(e.getMessage(), 404, ZonedDateTime.now(ZoneId.of("Z")), "No es válida esta solicitud");
+
+        return new ResponseEntity<>(error, HttpStatus.NOT_FOUND);
+    }
+
+    //Esta excepción es cuando hay problemas con la base de datos
+    @ExceptionHandler(value = {DBException.class})
+    public ResponseEntity<Object> handleDBException(DBException e) {
+        ErrorResponse error = new ErrorResponse(e.getMessage(), 500, ZonedDateTime.now(ZoneId.of("Z")),"Error interno con la base de datos");
+        return new ResponseEntity<>(error, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+    //Esta excepción es cuando hay problemas con rabitMQ
+    @ExceptionHandler(value = {RabbitMQException.class})
+    public ResponseEntity<Object> handleRabbitMQException(RabbitMQException e) {
+        ErrorResponse error = new ErrorResponse(e.getMessage(), 500, ZonedDateTime.now(ZoneId.of("Z")), "Error interno con Rabbit MQ");
+        return new ResponseEntity<>(error, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+    //Esta excepción es cuando hay que validar datos del formulario
+    @ExceptionHandler(value = {ValidationException.class})
+    public ResponseEntity<Object> handleValidationException(ValidationException e) {
+        ErrorResponse error = new ErrorResponse(e.getMessage(), 400, ZonedDateTime.now(ZoneId.of("Z")), "Error de validación");
+        return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
+    }
+
+    //Esta excepción es cuando se ingresan argumentos inválidos al formulario
+    @ExceptionHandler(value = {IllegalArgumentException.class})
+    public ResponseEntity<Object> handleIllegalArgumentException(IllegalArgumentException e) {
+        ErrorResponse error = new ErrorResponse(e.getMessage(), 400, ZonedDateTime.now(ZoneId.of("Z")), "Argumento inválido");
+        return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
+    }
+
+    //Esta excepción es cuando no se encuentra el correo
+    @ExceptionHandler(value = {EmailNotFoundException.class})
+    public ResponseEntity<Object> handleEmailNotFoundException(EmailNotFoundException e) {
+        ErrorResponse error = new ErrorResponse(e.getMessage(), 404, ZonedDateTime.now(ZoneId.of("Z")), "Correo electrónico no encontrado");
+        return new ResponseEntity<>(error, HttpStatus.NOT_FOUND);
+    }
+
+    //Esta excepción es cuando se va a comprobar que existe un usuario
+    @ExceptionHandler(value = {UsuarioExisException.class})
+    public ResponseEntity<Object> handleUsuarioExisException(UsuarioExisException e) {
+        ErrorResponse error = new ErrorResponse(e.getMessage(), 400, ZonedDateTime.now(ZoneId.of("Z")), "Usuario existente");
+        return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
+    }
+
+}

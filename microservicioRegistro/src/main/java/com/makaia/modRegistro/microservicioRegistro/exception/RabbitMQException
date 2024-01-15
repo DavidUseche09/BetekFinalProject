@@ -1,0 +1,10 @@
+public class RabbitMQException extends RuntimeException {
+
+    public RabbitMQException(String mensaje, Throwable cause) {
+        super(mensaje, cause);
+    }
+
+    public RabbitMQException(String mensaje) {
+        super(mensaje);
+    }
+}

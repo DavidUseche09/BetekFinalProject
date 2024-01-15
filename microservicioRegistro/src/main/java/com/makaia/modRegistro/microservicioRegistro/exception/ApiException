@@ -1,0 +1,13 @@
+public class ApiException extends RuntimesException {
+
+    public ApiException(String mensaje, Throwable cause){
+        super(mensaje, cause);
+    }
+
+    public ApiException(String mensaje) {
+        super(mensaje);
+    }
+
+
+
+}
