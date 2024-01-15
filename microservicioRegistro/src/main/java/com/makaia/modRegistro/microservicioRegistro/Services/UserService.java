@@ -5,7 +5,6 @@ import com.makaia.modRegistro.microservicioRegistro.Entities.Roles;
 import com.makaia.modRegistro.microservicioRegistro.Entities.Usuario;
 import com.makaia.modRegistro.microservicioRegistro.Repositories.RolesRepository;
 import com.makaia.modRegistro.microservicioRegistro.Repositories.UsuarioRepository;
-import com.makaia.modRegistro.microservicioRegistro.exception.UsuarioExisException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -26,7 +25,7 @@ public class UserService {
     public Usuario crearUsuario(UsersDTO dto){
         Usuario exists = this.repository.findByEmail(dto.getEmail());
         if (exists != null){
-            throw new UsuarioExisException(dto.getEmail());
+            throw new RuntimeException("Aca se cambia esta excepcion");
         }
       Optional<Roles> rolOptional = rolesRepository.findById(dto.getRol_id());
         Roles rolesResult = new Roles(rolOptional.get().getId(),rolOptional.get().getDescripcion());

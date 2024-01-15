@@ -3,7 +3,6 @@ package com.makaia.modRegistro.microservicioRegistro.Entities;
 import jakarta.persistence.*;
 
 import java.util.Date;
-import java.util.List;
 
 @Entity
 @Table (name= "Aspirante")
@@ -216,7 +215,7 @@ public class Aspirante {
     @ManyToOne (optional = false)
     Genero genero;
     @ManyToOne (optional = false)
-    GrupEtnico grupo_etnico;
+    GrupoEtnico grupo_etnico;
     @ManyToOne(optional = false)
     Discapacidad discapacidad;
     @ManyToOne (optional = false)

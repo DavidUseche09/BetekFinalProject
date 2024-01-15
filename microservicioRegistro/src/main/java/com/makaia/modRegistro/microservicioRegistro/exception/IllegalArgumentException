@@ -1,5 +1,3 @@
-package com.exception;
-
 public class IllegalArgumentException extends RuntimeException {
 
     public IllegalArgumentException(String mensaje, Throwable cause) {

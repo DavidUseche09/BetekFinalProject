@@ -6,7 +6,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "Grupo_Etnico")
-public class GrupEtnico {
+public class GrupoEtnico {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected Long id;
@@ -15,10 +15,10 @@ public class GrupEtnico {
     @OneToMany(mappedBy = "grupo_etnico")
     List<Aspirante> aspirantes;
 
-    public GrupEtnico() {
+    public GrupoEtnico() {
     }
 
-    public GrupEtnico(String descripcion) {
+    public GrupoEtnico(String descripcion) {
         Descripcion = descripcion;
     }
 

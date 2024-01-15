@@ -1,5 +1,3 @@
-package com.exception;
-
 public class DBException extends RuntimeException {
 
     public DBException(String mensaje, Throwable cause) {

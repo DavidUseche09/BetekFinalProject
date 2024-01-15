@@ -1,5 +1,3 @@
-package com.exception;
-
 public class ApiException extends RuntimesException {
 
     public ApiException(String mensaje, Throwable cause){

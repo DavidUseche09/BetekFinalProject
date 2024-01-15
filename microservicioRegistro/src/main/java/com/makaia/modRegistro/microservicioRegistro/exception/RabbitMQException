@@ -1,5 +1,3 @@
-package com.exception;
-
 public class RabbitMQException extends RuntimeException {
 
     public RabbitMQException(String mensaje, Throwable cause) {
