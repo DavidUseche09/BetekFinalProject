@@ -1,2 +1,4 @@
-package com.makaia.modRegistro.microservicioRegistro.Services;public class AspiranteService {
+package com.makaia.modRegistro.microservicioRegistro.Services;
+
+public class AspiranteService {
 }
