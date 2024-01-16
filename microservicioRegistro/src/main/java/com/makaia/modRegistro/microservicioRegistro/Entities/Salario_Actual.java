@@ -10,7 +10,7 @@ public class Salario_Actual {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected Long id;
-    @Column(length = 30)
+    @Column(length = 50)
     private String Rango_Salarial;
     @OneToMany(mappedBy = "salario_actual")
     List<Aspirante> aspirantes;

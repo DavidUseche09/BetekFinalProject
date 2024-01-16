@@ -47,7 +47,7 @@ public class Aspirante {
 
     public Aspirante() {
     }
-    public Aspirante(String nombre, Long numeroDocumento, Long edad, Date fechaNacimiento, Long celular, String email, String nacionalidad, String departamento, String ciudad, String direccion, int estrato, String ultimoTitulo, String ocupacionSi, String tiempoLibre, String personaEmergencia, Long contactoEmergencia, String emailEmergencia, String organizacion) {
+    public Aspirante(String nombre, Long numeroDocumento, Long edad, Date fechaNacimiento, Long celular, String email, String nacionalidad, String departamento, String ciudad, String direccion, String ultimoTitulo, String ocupacionSi, String tiempoLibre, String personaEmergencia, Long contactoEmergencia, String emailEmergencia, String organizacion) {
         Nombre = nombre;
         NumeroDocumento = numeroDocumento;
         Edad = edad;
@@ -66,6 +66,10 @@ public class Aspirante {
         EmailEmergencia = emailEmergencia;
         Organizacion = organizacion;
     }
+
+    public Aspirante(String nombre, Long numeroDocumento, Long edad, String fechaNacimiento, String celular, String email, String nacionalidad, String departamento, String ciudad, String direccion, String ultimoTitulo, String ocupacionSi, String tiempoLibre, String personaEmergencia, Long contactoEmergencia, String emailEmergencia, String organizacion, Bootcamp_Info bootcampInfoResult, Discapacidad discapacidadResult, Entrenamiento entrenamientoResult, Estrato estratoResult, Genero generoResult, GrupoEtnico grupoEtnicoResult, Nivel_Educacion nivelEducacionResult, Ocupacion ocupacionResult, PoblacionIdentificacion poblacionIdentificacionResult, Salario_Actual salarioActualResult, Tipo_Doc tipodocResult) {
+    }
+
 
     public Long getId() {
         return id;

@@ -15,4 +15,30 @@ public class Estrato {
     @OneToMany(mappedBy = "estrato")
     List<Aspirante> aspirantes;
 
+    public Estrato() {
+    }
+
+    public Estrato(Long id, int numEstrato) {
+        this.id = id;
+        this.numEstrato = numEstrato;
+    }
+
+    public Estrato(int numEstrato) {
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public int getNumEstrato() {
+        return numEstrato;
+    }
+
+    public void setNumEstrato(int numEstrato) {
+        this.numEstrato = numEstrato;
+    }
 }

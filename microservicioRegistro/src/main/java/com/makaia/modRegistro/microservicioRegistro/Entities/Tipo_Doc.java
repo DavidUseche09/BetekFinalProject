@@ -10,7 +10,7 @@ public class Tipo_Doc {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected Long id;
-    @Column(length = 30)
+    @Column(length = 50)
     private String Descripcion;
     @OneToMany(mappedBy = "tipo_doc")
     List<Aspirante> aspirantes;

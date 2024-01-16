@@ -2,11 +2,11 @@ package com.makaia.modRegistro.microservicioRegistro.Dtos;
 
 
 public class AspirantesDTO {
-    private int entrenamiento;
+    private Long entrenamiento;
     private String nombre;
-    private int tipo_doc;
-    private int numero_documento;
-    private String genero;
+    private Long tipo_doc;
+    private Long numero_documento;
+    private Long genero;
     private Long edad;
     private String fecha_nacimiento;
     private String celular;
@@ -15,7 +15,7 @@ public class AspirantesDTO {
     private String departamento;
     private String ciudad;
     private String direccion;
-    private int estrato;
+    private Long estrato;
     private Long grupo_etnico_id;
     private  Long discapacidad_id;
     private  Long poblacion_id_id;
@@ -33,7 +33,8 @@ public class AspirantesDTO {
 
     public AspirantesDTO() {
     }
-    public AspirantesDTO(int entrenamiento, String nombre, int tipo_doc, int numero_documento, String genero, Long edad, String fecha_nacimiento, String celular, String email, String nacionalidad, String departamento, String ciudad, String direccion, int estrato, Long grupo_etnico_id, Long discapacidad_id, Long poblacion_id_id, Long nivel_educacion_id, Long ocupacion_id, String ultimo_titulo, String ocupacion_si, Long salario_actual_id, String tiempo_libre, String persona_emergencia, Long contacto_emergencia, String email_emergencia, Long bootcamp_info_id, String organizacion) {
+
+    public AspirantesDTO(Long entrenamiento, String nombre, Long tipo_doc, Long numero_documento, Long genero, Long edad, String fecha_nacimiento, String celular, String email, String nacionalidad, String departamento, String ciudad, String direccion, Long estrato, Long grupo_etnico_id, Long discapacidad_id, Long poblacion_id_id, Long nivel_educacion_id, Long ocupacion_id, String ultimo_titulo, String ocupacion_si, Long salario_actual_id, String tiempo_libre, String persona_emergencia, Long contacto_emergencia, String email_emergencia, Long bootcamp_info_id, String organizacion) {
         this.entrenamiento = entrenamiento;
         this.nombre = nombre;
         this.tipo_doc = tipo_doc;
@@ -64,11 +65,11 @@ public class AspirantesDTO {
         this.organizacion = organizacion;
     }
 
-    public int getEntrenamiento() {
+    public Long getEntrenamiento() {
         return entrenamiento;
     }
 
-    public void setEntrenamiento(int entrenamiento) {
+    public void setEntrenamiento(Long entrenamiento) {
         this.entrenamiento = entrenamiento;
     }
 
@@ -80,27 +81,27 @@ public class AspirantesDTO {
         this.nombre = nombre;
     }
 
-    public int getTipo_doc() {
+    public Long getTipo_doc() {
         return tipo_doc;
     }
 
-    public void setTipo_doc(int tipo_doc) {
+    public void setTipo_doc(Long tipo_doc) {
         this.tipo_doc = tipo_doc;
     }
 
-    public int getNumero_documento() {
+    public Long getNumero_documento() {
         return numero_documento;
     }
 
-    public void setNumero_documento(int numero_documento) {
+    public void setNumero_documento(Long numero_documento) {
         this.numero_documento = numero_documento;
     }
 
-    public String getGenero() {
+    public Long getGenero() {
         return genero;
     }
 
-    public void setGenero(String genero) {
+    public void setGenero(Long genero) {
         this.genero = genero;
     }
 
@@ -168,11 +169,11 @@ public class AspirantesDTO {
         this.direccion = direccion;
     }
 
-    public int getEstrato() {
+    public Long getEstrato() {
         return estrato;
     }
 
-    public void setEstrato(int estrato) {
+    public void setEstrato(Long estrato) {
         this.estrato = estrato;
     }
 

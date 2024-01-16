@@ -10,7 +10,7 @@ public class Bootcamp_Info {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected Long id;
-    @Column(length = 30)
+    @Column(length = 70)
     private String Descripcion;
     @OneToMany(mappedBy = "bootcamp_info")
     List<Aspirante> aspirantes;
