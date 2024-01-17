@@ -16,6 +16,9 @@ public class Usuario {
     Roles rol;
 
     public Usuario(String email, String password, Roles rol) {
+        if (email == null || password == null || rol == null) {
+            throw new IllegalArgumentException("Email, password y rol no pueden ser nulos.");
+        }
         this.email = email;
         this.password = password;
         this.rol = rol;
@@ -50,6 +53,6 @@ public class Usuario {
     }
 
     public void setRol(Roles rol) {
-        rol = rol;
+        this.rol = rol;
     }
 }

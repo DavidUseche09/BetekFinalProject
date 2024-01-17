@@ -24,4 +24,15 @@ public class SecurityConfiguration {
                 }).httpBasic(Customizer.withDefaults());
         return httpSecurity.build();
     }
+    // Otra manera de mejorar el codigo
+//    @Bean
+//    public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
+//        httpSecurity.csrf(AbstractHttpConfigurer::disable)
+//                .authorizeHttpRequests((authorize) -> {
+//                    authorize.antMatchers("/recursos-publicos/**").permitAll()
+//                            .antMatchers("/recursos-privados/**").authenticated();
+//                })
+//                .httpBasic(Customizer.withDefaults());
+//        return httpSecurity.build();
+//    }
 }
