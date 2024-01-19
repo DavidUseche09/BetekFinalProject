@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.Optional;
@@ -44,16 +45,16 @@ public class UserServiceTest {
         UsersDTO usersDTO = new UsersDTO("test@example.com", "password", 1L);
 
         when(usuarioRepository.findByEmail("test@example.com")).thenReturn(null);
-        when(rolesRepository.findById(1L)).thenReturn(Optional.of(new Roles(1L, "USER")));
-//        when(usuarioRepository.save(any())).thenReturn(new Usuario(/*datos del usuario creado*/));
-        when(passwordEncoder.encode("password")).thenReturn("hashedPassword");
+        when(rolesRepository.findById(1L)).thenReturn(Optional.of(new Roles(1L, "Programador")));
+//        when(passwordEncoder.encode("password")).thenReturn("hashedPassword");
+        when(usuarioRepository.save(any())).thenReturn(new Usuario("test@example.com", passwordEncoder.encode("password"), new Roles("Programador")));
+
 
         // Act
         Usuario nuevoUsuario = userService.crearUsuario(usersDTO);
 
         // Assert
         assertNotNull(nuevoUsuario);
-        // Puedes agregar más aserciones según la lógica específica de tu aplicación
         verify(usuarioRepository, times(1)).findByEmail("test@example.com");
         verify(rolesRepository, times(1)).findById(1L);
         verify(usuarioRepository, times(1)).save(any());

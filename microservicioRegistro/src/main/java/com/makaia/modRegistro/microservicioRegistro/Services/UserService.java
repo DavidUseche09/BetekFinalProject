@@ -31,7 +31,6 @@ public class UserService {
         Roles rolesResult = new Roles(rolOptional.get().getId(),rolOptional.get().getDescripcion());
         Usuario nuevoUsuario = new Usuario(dto.getEmail(), passwordEncoder.encode(dto.getPassword()),rolesResult);
         nuevoUsuario= this.repository.save(nuevoUsuario);
-        System.out.println(nuevoUsuario);
         return nuevoUsuario;
     }
 }
