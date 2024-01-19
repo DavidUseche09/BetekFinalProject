@@ -17,7 +17,8 @@ public class Ocupacion {
     public Ocupacion() {
     }
 
-    public Ocupacion(String descripcion) {
+    public Ocupacion(Long id, String descripcion) {
+        this.id = id;
         Descripcion = descripcion;
     }
 

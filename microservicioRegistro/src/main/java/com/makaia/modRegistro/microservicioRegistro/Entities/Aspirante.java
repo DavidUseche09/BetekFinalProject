@@ -44,10 +44,30 @@ public class Aspirante {
     private String EmailEmergencia;
     @Column
     private String Organizacion;
+    @ManyToOne (optional = false)
+    Tipo_Doc tipo_doc;
+    @ManyToOne (optional = false)
+    Genero genero;
+    @ManyToOne (optional = false)
+    GrupoEtnico grupo_etnico;
+    @ManyToOne(optional = false)
+    Discapacidad discapacidad;
+    @ManyToOne (optional = false)
+    PoblacionIdentificacion poblacion_Id;
+    @ManyToOne (optional = false)
+    Nivel_Educacion nivel_educacion;
+    @ManyToOne (optional = false)
+    Ocupacion ocupacion;
+    @ManyToOne (optional = false)
+    Salario_Actual salario_actual;
+    @ManyToOne (optional = false)
+    Bootcamp_Info bootcamp_info;
+    @ManyToOne (optional = false)
+    Entrenamiento entrenamiento;
+    @ManyToOne (optional = false)
+    Estrato estrato;
 
-    public Aspirante() {
-    }
-    public Aspirante(String nombre, Long numeroDocumento, Long edad, Date fechaNacimiento, Long celular, String email, String nacionalidad, String departamento, String ciudad, String direccion, String ultimoTitulo, String ocupacionSi, String tiempoLibre, String personaEmergencia, Long contactoEmergencia, String emailEmergencia, String organizacion) {
+    public Aspirante(String nombre, Long numeroDocumento, Long edad, Date fechaNacimiento, Long celular, String email, String nacionalidad, String departamento, String ciudad, String direccion, String ultimoTitulo, String ocupacionSi, String tiempoLibre, String personaEmergencia, Long contactoEmergencia, String emailEmergencia, String organizacion, Tipo_Doc tipo_doc, Genero genero, GrupoEtnico grupo_etnico, Discapacidad discapacidad, PoblacionIdentificacion poblacion_Id, Nivel_Educacion nivel_educacion, Ocupacion ocupacion, Salario_Actual salario_actual, Bootcamp_Info bootcamp_info, Entrenamiento entrenamiento, Estrato estrato) {
         Nombre = nombre;
         NumeroDocumento = numeroDocumento;
         Edad = edad;
@@ -65,11 +85,18 @@ public class Aspirante {
         ContactoEmergencia = contactoEmergencia;
         EmailEmergencia = emailEmergencia;
         Organizacion = organizacion;
+        this.tipo_doc = tipo_doc;
+        this.genero = genero;
+        this.grupo_etnico = grupo_etnico;
+        this.discapacidad = discapacidad;
+        this.poblacion_Id = poblacion_Id;
+        this.nivel_educacion = nivel_educacion;
+        this.ocupacion = ocupacion;
+        this.salario_actual = salario_actual;
+        this.bootcamp_info = bootcamp_info;
+        this.entrenamiento = entrenamiento;
+        this.estrato = estrato;
     }
-
-    public Aspirante(String nombre, Long numeroDocumento, Long edad, String fechaNacimiento, String celular, String email, String nacionalidad, String departamento, String ciudad, String direccion, String ultimoTitulo, String ocupacionSi, String tiempoLibre, String personaEmergencia, Long contactoEmergencia, String emailEmergencia, String organizacion, Bootcamp_Info bootcampInfoResult, Discapacidad discapacidadResult, Entrenamiento entrenamientoResult, Estrato estratoResult, Genero generoResult, GrupoEtnico grupoEtnicoResult, Nivel_Educacion nivelEducacionResult, Ocupacion ocupacionResult, PoblacionIdentificacion poblacionIdentificacionResult, Salario_Actual salarioActualResult, Tipo_Doc tipodocResult) {
-    }
-
 
     public Long getId() {
         return id;
@@ -214,27 +241,92 @@ public class Aspirante {
     public void setOrganizacion(String organizacion) {
         Organizacion = organizacion;
     }
-    @ManyToOne (optional = false)
-    Tipo_Doc tipo_doc;
-    @ManyToOne (optional = false)
-    Genero genero;
-    @ManyToOne (optional = false)
-    GrupoEtnico grupo_etnico;
-    @ManyToOne(optional = false)
-    Discapacidad discapacidad;
-    @ManyToOne (optional = false)
-    PoblacionIdentificacion poblacion_Id;
-    @ManyToOne (optional = false)
-    Nivel_Educacion nivel_educacion;
-    @ManyToOne (optional = false)
-    Ocupacion ocupacion;
-    @ManyToOne (optional = false)
-    Salario_Actual salario_actual;
-    @ManyToOne (optional = false)
-    Bootcamp_Info bootcamp_info;
-    @ManyToOne (optional = false)
-    Entrenamiento entrenamiento;
-    @ManyToOne (optional = false)
-    Estrato estrato;
 
+    public Tipo_Doc getTipo_doc() {
+        return tipo_doc;
+    }
+
+    public void setTipo_doc(Tipo_Doc tipo_doc) {
+        this.tipo_doc = tipo_doc;
+    }
+
+    public Genero getGenero() {
+        return genero;
+    }
+
+    public void setGenero(Genero genero) {
+        this.genero = genero;
+    }
+
+    public GrupoEtnico getGrupo_etnico() {
+        return grupo_etnico;
+    }
+
+    public void setGrupo_etnico(GrupoEtnico grupo_etnico) {
+        this.grupo_etnico = grupo_etnico;
+    }
+
+    public Discapacidad getDiscapacidad() {
+        return discapacidad;
+    }
+
+    public void setDiscapacidad(Discapacidad discapacidad) {
+        this.discapacidad = discapacidad;
+    }
+
+    public PoblacionIdentificacion getPoblacion_Id() {
+        return poblacion_Id;
+    }
+
+    public void setPoblacion_Id(PoblacionIdentificacion poblacion_Id) {
+        this.poblacion_Id = poblacion_Id;
+    }
+
+    public Nivel_Educacion getNivel_educacion() {
+        return nivel_educacion;
+    }
+
+    public void setNivel_educacion(Nivel_Educacion nivel_educacion) {
+        this.nivel_educacion = nivel_educacion;
+    }
+
+    public Ocupacion getOcupacion() {
+        return ocupacion;
+    }
+
+    public void setOcupacion(Ocupacion ocupacion) {
+        this.ocupacion = ocupacion;
+    }
+
+    public Salario_Actual getSalario_actual() {
+        return salario_actual;
+    }
+
+    public void setSalario_actual(Salario_Actual salario_actual) {
+        this.salario_actual = salario_actual;
+    }
+
+    public Bootcamp_Info getBootcamp_info() {
+        return bootcamp_info;
+    }
+
+    public void setBootcamp_info(Bootcamp_Info bootcamp_info) {
+        this.bootcamp_info = bootcamp_info;
+    }
+
+    public Entrenamiento getEntrenamiento() {
+        return entrenamiento;
+    }
+
+    public void setEntrenamiento(Entrenamiento entrenamiento) {
+        this.entrenamiento = entrenamiento;
+    }
+
+    public Estrato getEstrato() {
+        return estrato;
+    }
+
+    public void setEstrato(Estrato estrato) {
+        this.estrato = estrato;
+    }
 }

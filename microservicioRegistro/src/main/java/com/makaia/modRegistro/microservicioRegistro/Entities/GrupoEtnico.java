@@ -18,7 +18,8 @@ public class GrupoEtnico {
     public GrupoEtnico() {
     }
 
-    public GrupoEtnico(String descripcion) {
+    public GrupoEtnico(Long id, String descripcion) {
+        this.id = id;
         Descripcion = descripcion;
     }
 

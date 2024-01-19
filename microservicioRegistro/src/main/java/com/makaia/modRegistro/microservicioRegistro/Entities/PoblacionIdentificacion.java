@@ -18,7 +18,8 @@ public class PoblacionIdentificacion {
     public PoblacionIdentificacion() {
     }
 
-    public PoblacionIdentificacion(String descripcion) {
+    public PoblacionIdentificacion(Long id, String descripcion) {
+        this.id = id;
         Descripcion = descripcion;
     }
 

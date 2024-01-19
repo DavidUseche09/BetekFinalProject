@@ -52,4 +52,15 @@ public class Usuario {
     public void setRol(Roles rol) {
         rol = rol;
     }
+
+    @Override
+    public String toString() {
+        return "Usuario{" +
+                "id=" + id +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", rol=" + rol +
+                '}';
+    }
 }
+

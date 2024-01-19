@@ -17,7 +17,8 @@ public class Nivel_Educacion {
     public Nivel_Educacion() {
     }
 
-    public Nivel_Educacion(String descripcion) {
+    public Nivel_Educacion(Long id, String descripcion) {
+        this.id = id;
         Descripcion = descripcion;
     }
 

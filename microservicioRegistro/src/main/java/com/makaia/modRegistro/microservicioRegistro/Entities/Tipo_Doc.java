@@ -17,7 +17,8 @@ public class Tipo_Doc {
     public Tipo_Doc() {
     }
 
-    public Tipo_Doc(String descripcion) {
+    public Tipo_Doc(Long id, String descripcion) {
+        this.id = id;
         Descripcion = descripcion;
     }
 

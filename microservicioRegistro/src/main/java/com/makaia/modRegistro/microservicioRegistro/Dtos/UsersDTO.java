@@ -1,6 +1,6 @@
 package com.makaia.modRegistro.microservicioRegistro.Dtos;
 
-import com.makaia.modRegistro.microservicioRegistro.Entities.Roles;
+
 
 public class UsersDTO {
     private String email;

@@ -17,7 +17,8 @@ public class Bootcamp_Info {
     public Bootcamp_Info() {
     }
 
-    public Bootcamp_Info(String descripcion) {
+    public Bootcamp_Info(Long id, String descripcion) {
+        this.id = id;
         Descripcion = descripcion;
     }
 

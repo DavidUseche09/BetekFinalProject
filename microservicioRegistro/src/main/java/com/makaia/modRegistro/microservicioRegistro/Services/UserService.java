@@ -28,7 +28,7 @@ public class UserService {
             throw new RuntimeException("Aca se cambia esta excepcion");
         }
       Optional<Roles> rolOptional = rolesRepository.findById(dto.getRol_id());
-        Roles rolesResult = new Roles(rolOptional.get().getDescripcion());
+        Roles rolesResult = new Roles(rolOptional.get().getId(),rolOptional.get().getDescripcion());
         Usuario nuevoUsuario = new Usuario(dto.getEmail(), passwordEncoder.encode(dto.getPassword()),rolesResult);
         nuevoUsuario= this.repository.save(nuevoUsuario);
         System.out.println(nuevoUsuario);

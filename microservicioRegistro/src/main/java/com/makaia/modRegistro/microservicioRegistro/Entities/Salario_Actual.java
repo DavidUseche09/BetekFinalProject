@@ -17,8 +17,9 @@ public class Salario_Actual {
     public Salario_Actual() {
     }
 
-    public Salario_Actual(String rangoSalarial) {
-        Rango_Salarial = rangoSalarial;
+    public Salario_Actual(Long id, String rango_Salarial) {
+        this.id = id;
+        Rango_Salarial = rango_Salarial;
     }
 
     public Long getId() {

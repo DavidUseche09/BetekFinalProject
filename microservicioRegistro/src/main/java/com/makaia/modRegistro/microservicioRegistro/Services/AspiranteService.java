@@ -41,27 +41,27 @@ public class AspiranteService {
     }
     public Aspirante crearAspirante(AspirantesDTO dto) {
         Optional<Bootcamp_Info> botcampOptional = bootcampInfoRepository.findById(dto.getBootcamp_info_id());
-        Bootcamp_Info bootcampInfoResult = new Bootcamp_Info(botcampOptional.get().getDescripcion());
+        Bootcamp_Info bootcampInfoResult = new Bootcamp_Info(botcampOptional.get().getId(),botcampOptional.get().getDescripcion());
         Optional<Discapacidad> discapacidadOptional = discapacidadRepository.findById(dto.getDiscapacidad_id());
-        Discapacidad discapacidadResult = new Discapacidad(discapacidadOptional.get().getDescripcion());
+        Discapacidad discapacidadResult = new Discapacidad(discapacidadOptional.get().getId(),discapacidadOptional.get().getDescripcion());
         Optional<Entrenamiento> entrenamientoOptional = entrenamientoRepository.findById(dto.getEntrenamiento());
-        Entrenamiento entrenamientoResult = new Entrenamiento(entrenamientoOptional.get().getFormacion());
+        Entrenamiento entrenamientoResult = new Entrenamiento(entrenamientoOptional.get().getId(),entrenamientoOptional.get().getFormacion());
         Optional<Estrato> estratoOptional = estratoRepository.findById(dto.getEstrato());
-        Estrato estratoResult = new Estrato(estratoOptional.get().getNumEstrato());
+        Estrato estratoResult = new Estrato(estratoOptional.get().getId(),estratoOptional.get().getNumEstrato());
         Optional<Genero> generoOptional = generoRepository.findById(dto.getGenero());
-        Genero generoResult = new Genero(generoOptional.get().getDescripcion());
+        Genero generoResult = new Genero(generoOptional.get().getId(),generoOptional.get().getDescripcion());
         Optional<GrupoEtnico> grupoEtnicoOptional = grupoEtnicoRepository.findById(dto.getGrupo_etnico_id());
-        GrupoEtnico grupoEtnicoResult = new GrupoEtnico(grupoEtnicoOptional.get().getDescripcion());
+        GrupoEtnico grupoEtnicoResult = new GrupoEtnico(grupoEtnicoOptional.get().getId(),grupoEtnicoOptional.get().getDescripcion());
         Optional<Nivel_Educacion> nivelEducacionOptional = nivelEducacionRepository.findById(dto.getNivel_educacion_id());
-        Nivel_Educacion nivelEducacionResult = new Nivel_Educacion(nivelEducacionOptional.get().getDescripcion());
+        Nivel_Educacion nivelEducacionResult = new Nivel_Educacion(nivelEducacionOptional.get().getId(),nivelEducacionOptional.get().getDescripcion());
         Optional<Ocupacion> ocupacionOptional = ocupacionRepository.findById(dto.getOcupacion_id());
-        Ocupacion ocupacionResult = new Ocupacion(ocupacionOptional.get().getDescripcion());
+        Ocupacion ocupacionResult = new Ocupacion(ocupacionOptional.get().getId(),ocupacionOptional.get().getDescripcion());
         Optional<PoblacionIdentificacion> poblacionIdentificacion = poblacionIdentificacionRepository.findById(dto.getPoblacion_id_id());
-        PoblacionIdentificacion poblacionIdentificacionResult = new PoblacionIdentificacion(poblacionIdentificacion.get().getDescripcion());
+        PoblacionIdentificacion poblacionIdentificacionResult = new PoblacionIdentificacion(poblacionIdentificacion.get().getId(),poblacionIdentificacion.get().getDescripcion());
         Optional<Salario_Actual> salarioActualOptional = salarioActualRepository.findById(dto.getSalario_actual_id());
-        Salario_Actual salarioActualResult = new Salario_Actual(salarioActualOptional.get().getRango_Salarial());
+        Salario_Actual salarioActualResult = new Salario_Actual(salarioActualOptional.get().getId(),salarioActualOptional.get().getRango_Salarial());
         Optional <Tipo_Doc> tipo_docOptional = tipoDocRepository.findById(dto.getTipo_doc());
-        Tipo_Doc tipodocResult = new Tipo_Doc(tipo_docOptional.get().getDescripcion());
+        Tipo_Doc tipodocResult = new Tipo_Doc(tipo_docOptional.get().getId(),tipo_docOptional.get().getDescripcion());
         Aspirante newAspirante = new Aspirante(
                 dto.getNombre(),
                 dto.getNumero_documento(),
@@ -80,17 +80,18 @@ public class AspiranteService {
                 dto.getContacto_emergencia(),
                 dto.getEmail_emergencia(),
                 dto.getOrganizacion(),
-                bootcampInfoResult,
-                discapacidadResult,
-                entrenamientoResult,
-                estratoResult,
+                tipodocResult,
                 generoResult,
                 grupoEtnicoResult,
+                discapacidadResult,
+                poblacionIdentificacionResult,
                 nivelEducacionResult,
                 ocupacionResult,
-                poblacionIdentificacionResult,
                 salarioActualResult,
-                tipodocResult);
+                bootcampInfoResult,
+                entrenamientoResult,
+                estratoResult
+                );
         newAspirante = this.repository.save(newAspirante);
         return newAspirante;
     }

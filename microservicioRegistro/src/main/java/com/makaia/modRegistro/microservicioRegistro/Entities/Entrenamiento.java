@@ -18,7 +18,8 @@ public class Entrenamiento {
     public Entrenamiento() {
     }
 
-    public Entrenamiento(String formacion) {
+    public Entrenamiento(Long id, String formacion) {
+        this.id = id;
         this.formacion = formacion;
     }
 

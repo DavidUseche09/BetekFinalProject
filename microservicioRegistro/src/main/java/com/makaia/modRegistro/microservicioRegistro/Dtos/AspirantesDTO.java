@@ -1,6 +1,9 @@
 package com.makaia.modRegistro.microservicioRegistro.Dtos;
 
 
+import javax.xml.crypto.Data;
+import java.util.Date;
+
 public class AspirantesDTO {
     private Long entrenamiento;
     private String nombre;
@@ -8,8 +11,8 @@ public class AspirantesDTO {
     private Long numero_documento;
     private Long genero;
     private Long edad;
-    private String fecha_nacimiento;
-    private String celular;
+    private Date fecha_nacimiento;
+    private Long celular;
     private String email;
     private String nacionalidad;
     private String departamento;
@@ -34,7 +37,7 @@ public class AspirantesDTO {
     public AspirantesDTO() {
     }
 
-    public AspirantesDTO(Long entrenamiento, String nombre, Long tipo_doc, Long numero_documento, Long genero, Long edad, String fecha_nacimiento, String celular, String email, String nacionalidad, String departamento, String ciudad, String direccion, Long estrato, Long grupo_etnico_id, Long discapacidad_id, Long poblacion_id_id, Long nivel_educacion_id, Long ocupacion_id, String ultimo_titulo, String ocupacion_si, Long salario_actual_id, String tiempo_libre, String persona_emergencia, Long contacto_emergencia, String email_emergencia, Long bootcamp_info_id, String organizacion) {
+    public AspirantesDTO(Long entrenamiento, String nombre, Long tipo_doc, Long numero_documento, Long genero, Long edad, Date fecha_nacimiento, Long celular, String email, String nacionalidad, String departamento, String ciudad, String direccion, Long estrato, Long grupo_etnico_id, Long discapacidad_id, Long poblacion_id_id, Long nivel_educacion_id, Long ocupacion_id, String ultimo_titulo, String ocupacion_si, Long salario_actual_id, String tiempo_libre, String persona_emergencia, Long contacto_emergencia, String email_emergencia, Long bootcamp_info_id, String organizacion) {
         this.entrenamiento = entrenamiento;
         this.nombre = nombre;
         this.tipo_doc = tipo_doc;
@@ -113,19 +116,19 @@ public class AspirantesDTO {
         this.edad = edad;
     }
 
-    public String getFecha_nacimiento() {
+    public Date getFecha_nacimiento() {
         return fecha_nacimiento;
     }
 
-    public void setFecha_nacimiento(String fecha_nacimiento) {
+    public void setFecha_nacimiento(Date fecha_nacimiento) {
         this.fecha_nacimiento = fecha_nacimiento;
     }
 
-    public String getCelular() {
+    public Long getCelular() {
         return celular;
     }
 
-    public void setCelular(String celular) {
+    public void setCelular(Long celular) {
         this.celular = celular;
     }
 
