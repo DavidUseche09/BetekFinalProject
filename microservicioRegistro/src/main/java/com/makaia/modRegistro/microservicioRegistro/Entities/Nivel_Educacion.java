@@ -10,14 +10,15 @@ public class Nivel_Educacion {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected Long id;
-    @Column(length = 30)
+    @Column(length = 70)
     private String Descripcion;
     @OneToMany(mappedBy = "nivel_educacion")
     List<Aspirante> aspirantes;
     public Nivel_Educacion() {
     }
 
-    public Nivel_Educacion(String descripcion) {
+    public Nivel_Educacion(Long id, String descripcion) {
+        this.id = id;
         Descripcion = descripcion;
     }
 

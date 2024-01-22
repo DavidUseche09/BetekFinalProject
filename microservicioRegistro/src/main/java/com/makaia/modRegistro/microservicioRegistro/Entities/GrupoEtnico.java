@@ -10,7 +10,7 @@ public class GrupoEtnico {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected Long id;
-    @Column(length = 30)
+    @Column(length = 70)
     private String Descripcion;
     @OneToMany(mappedBy = "grupo_etnico")
     List<Aspirante> aspirantes;
@@ -18,7 +18,8 @@ public class GrupoEtnico {
     public GrupoEtnico() {
     }
 
-    public GrupoEtnico(String descripcion) {
+    public GrupoEtnico(Long id, String descripcion) {
+        this.id = id;
         Descripcion = descripcion;
     }
 

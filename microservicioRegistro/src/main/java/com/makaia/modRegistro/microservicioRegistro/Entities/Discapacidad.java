@@ -18,7 +18,8 @@ public class Discapacidad {
     public Discapacidad() {
     }
 
-    public Discapacidad(String descripcion) {
+    public Discapacidad(Long id, String descripcion) {
+        this.id = id;
         Descripcion = descripcion;
     }
 

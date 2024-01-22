@@ -1,8 +1,0 @@
-package com.exception;
-
-public class UsuarioExisException extends RuntimeException {
-
-    public UsuarioExisException(String email) {
-        super("El usuario con correo electrónico '" + email + "' ya existe");
-    }
-}

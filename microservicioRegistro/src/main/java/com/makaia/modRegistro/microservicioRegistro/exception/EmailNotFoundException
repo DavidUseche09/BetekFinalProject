@@ -1,6 +1,0 @@
-public class EmailNotFoundException extends RuntimeException {
-
-    public EmailNotFoundException(String email) {
-        super("Correo no encontrado, verifique: " + email);
-    }
-}
