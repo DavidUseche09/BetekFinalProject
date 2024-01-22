@@ -17,7 +17,8 @@ public class Genero {
     public Genero() {
     }
 
-    public Genero(String descripcion) {
+    public Genero(Long id, String descripcion) {
+        this.id = id;
         Descripcion = descripcion;
     }
 

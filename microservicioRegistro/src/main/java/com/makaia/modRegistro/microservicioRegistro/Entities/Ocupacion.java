@@ -10,14 +10,15 @@ public class Ocupacion {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected Long id;
-    @Column(length = 30)
+    @Column(length = 50)
     private String Descripcion;
     @OneToMany(mappedBy = "ocupacion")
     List<Aspirante> aspirantes;
     public Ocupacion() {
     }
 
-    public Ocupacion(String descripcion) {
+    public Ocupacion(Long id, String descripcion) {
+        this.id = id;
         Descripcion = descripcion;
     }
 

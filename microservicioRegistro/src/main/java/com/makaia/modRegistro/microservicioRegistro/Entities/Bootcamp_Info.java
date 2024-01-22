@@ -10,14 +10,15 @@ public class Bootcamp_Info {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected Long id;
-    @Column(length = 30)
+    @Column(length = 70)
     private String Descripcion;
     @OneToMany(mappedBy = "bootcamp_info")
     List<Aspirante> aspirantes;
     public Bootcamp_Info() {
     }
 
-    public Bootcamp_Info(String descripcion) {
+    public Bootcamp_Info(Long id, String descripcion) {
+        this.id = id;
         Descripcion = descripcion;
     }
 
