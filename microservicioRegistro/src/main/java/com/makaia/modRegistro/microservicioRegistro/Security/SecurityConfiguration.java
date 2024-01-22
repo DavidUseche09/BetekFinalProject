@@ -19,8 +19,9 @@ public class SecurityConfiguration {
     public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
         httpSecurity.csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests((authorize)->{
-                    //Cambiar permitAll
-                    authorize.anyRequest().permitAll();
+                    //authorize.requestMatchers("api/v1/aspirante/**").hasRole("Programador");
+                   //authorize.anyRequest().authenticated();
+                   authorize.anyRequest().permitAll();
                 }).httpBasic(Customizer.withDefaults());
         return httpSecurity.build();
     }

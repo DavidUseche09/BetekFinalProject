@@ -34,7 +34,9 @@ public UserDetails loadUserByUsername (String email) throws UsernameNotFoundExce
             .password(user.getPassword())
             .roles("ROLE_"+user.getRol().getDescripcion())
             .build();
+    System.out.println(userCreate);
     return userCreate;
+
 }
     public PasswordEncoder passwordEncoder(){
         return new BCryptPasswordEncoder(8);

@@ -1,36 +1,66 @@
 package com.makaia.modRegistro.microservicioRegistro.Dtos;
 
 
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+
 import javax.xml.crypto.Data;
 import java.util.Date;
 
 public class AspirantesDTO {
+    @NotBlank(message = "Campo Obligatorio")
     private Long entrenamiento;
+    @NotBlank(message = "Campo Obligatorio")
     private String nombre;
+    @NotBlank(message = "Campo Obligatorio")
     private Long tipo_doc;
+    @NotBlank(message = "Campo Obligatorio")
     private Long numero_documento;
+    @NotBlank(message = "Campo Obligatorio")
     private Long genero;
+    @NotBlank(message = "Campo Obligatorio")
     private Long edad;
+    @NotBlank(message = "Campo Obligatorio")
     private Date fecha_nacimiento;
+    @NotBlank(message = "Campo Obligatorio")
     private Long celular;
+    @NotBlank(message = "Campo Obligatorio")
+    @Email(message = "Proporcione un correo electronico valido")
     private String email;
+    @NotBlank(message = "Campo Obligatorio")
     private String nacionalidad;
+    @NotBlank(message = "Campo Obligatorio")
     private String departamento;
+    @NotBlank(message = "Campo Obligatorio")
     private String ciudad;
+    @NotBlank(message = "Campo Obligatorio")
     private String direccion;
+    @NotBlank(message = "Campo Obligatorio")
     private Long estrato;
+    @NotBlank(message = "Campo Obligatorio")
     private Long grupo_etnico_id;
+    @NotBlank(message = "Campo Obligatorio")
     private  Long discapacidad_id;
+    @NotBlank(message = "Campo Obligatorio")
     private  Long poblacion_id_id;
+    @NotBlank(message = "Campo Obligatorio")
     private  Long nivel_educacion_id;
+    @NotBlank(message = "Campo Obligatorio")
     private  Long ocupacion_id;
+    @NotBlank(message = "Campo Obligatorio")
     private  String ultimo_titulo;
     private String ocupacion_si;
+    @NotBlank(message = "Campo Obligatorio")
     private Long salario_actual_id;
+    @NotBlank(message = "Campo Obligatorio")
     private String tiempo_libre;
+    @NotBlank(message = "Campo Obligatorio")
     private  String persona_emergencia;
+    @NotBlank(message = "Campo Obligatorio")
     private Long contacto_emergencia;
+    @NotBlank(message = "Campo Obligatorio")
     private  String email_emergencia;
+    @NotBlank(message = "Campo Obligatorio")
     private  Long bootcamp_info_id;
     private  String organizacion;
 
