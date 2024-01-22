@@ -42,9 +42,11 @@ public class UserServiceTest {
         Roles mockedRole = new Roles(1L, "Programador");
         Mockito.when(rolesRepository.findById(dto.getRol_id())).thenReturn(Optional.of(mockedRole));
         Mockito.when(usuarioRepository.findByEmail(dto.getEmail())).thenReturn(null);
-
-        // Configuramos el comportamiento del passwordEncoder
         Mockito.when(passwordEncoder.encode(Mockito.any(CharSequence.class))).thenReturn("hashedPassword");
+        Mockito.when(usuarioRepository.save(Mockito.any(Usuario.class))).thenAnswer(invocation -> {
+            Usuario userToSave = invocation.getArgument(0);
+            return new Usuario(userToSave.getEmail(), userToSave.getPassword(), userToSave.getRol());
+        });
 
         // Act
         Usuario result = userService.crearUsuario(dto);
