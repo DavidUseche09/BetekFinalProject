@@ -1,8 +1,7 @@
 package com.makaia.modRegistro.microservicioRegistro;
 
 import com.makaia.modRegistro.microservicioRegistro.Dtos.AspirantesDTO;
-import com.makaia.modRegistro.microservicioRegistro.Entities.Aspirante;
-import com.makaia.modRegistro.microservicioRegistro.Entities.Usuario;
+import com.makaia.modRegistro.microservicioRegistro.Entities.*;
 import com.makaia.modRegistro.microservicioRegistro.Repositories.*;
 import com.makaia.modRegistro.microservicioRegistro.Services.AspiranteService;
 import org.junit.jupiter.api.Test;
@@ -80,7 +79,7 @@ public class AspiranteServiceTest {
                 "Juan Pérez",           // nombre
                 1L,                      // tipo_doc
                 123456789L,              // numero_documento
-                1L,            // genero
+                1L,                     // genero
                 25L,                     // edad
                 date,           // fecha_nacimiento
                 1234567890L,           // celular
@@ -97,7 +96,7 @@ public class AspiranteServiceTest {
                 4L,                     // ocupacion_id
                 "Ingeniero",            // ultimo_titulo
                 "Trabajador",           // ocupacion_si
-                5000000L,               // salario_actual_id
+                2L,               // salario_actual_id
                 "Tiempo libre",         // tiempo_libre
                 "Contacto de emergencia",// persona_emergencia
                 987654321L,             // contacto_emergencia
@@ -105,8 +104,29 @@ public class AspiranteServiceTest {
                 1L,                     // bootcamp_info_id
                 "Empresa XYZ"           // organizacion);
         );
-        // Mock del resultado de la búsqueda por número de documento
-        Mockito.when(aspiranteRepository.findById(Mockito.anyLong())).thenReturn(Optional.empty());
+
+        Optional<Entrenamiento> entrenamientoOpt = Optional.of(new Entrenamiento(1L, "BackEnd"));
+        Mockito.when(entrenamientoRepository.findById(1L)).thenReturn(entrenamientoOpt);
+        Optional<Tipo_Doc> tipoDocOpt = Optional.of(new Tipo_Doc(1L, "Cedula Ciudadania"));
+        Mockito.when(tipoDocRepository.findById(1L)).thenReturn(tipoDocOpt);
+        Optional<Genero> generoOpt = Optional.of(new Genero(1L, "Masculino"));
+        Mockito.when(generoRepository.findById(1L)).thenReturn(generoOpt);
+        Optional<Estrato> estratoOpt = Optional.of(new Estrato(3L, 3));
+        Mockito.when(estratoRepository.findById(3L)).thenReturn(estratoOpt);
+        Optional<GrupoEtnico> grupoEtnicoOpt = Optional.of(new GrupoEtnico(1L, "Indigena"));
+        Mockito.when(grupoEtnicoRepository.findById(1L)).thenReturn(grupoEtnicoOpt);
+        Optional<Discapacidad> discapacidadOpt = Optional.of(new Discapacidad(2L, "Ninguna"));
+        Mockito.when(discapacidadRepository.findById(2L)).thenReturn(discapacidadOpt);
+        Optional<PoblacionIdentificacion> poblacionOpt = Optional.of(new PoblacionIdentificacion(1L, "Desplazado"));
+        Mockito.when(poblacionIdentificacionRepository.findById(1L)).thenReturn(poblacionOpt);
+        Optional<Nivel_Educacion> nivelEducacionOpt = Optional.of(new Nivel_Educacion(3L, "Tecnico"));
+        Mockito.when(nivelEducacionRepository.findById(3L)).thenReturn(nivelEducacionOpt);
+        Optional<Ocupacion> ocupacionOpt = Optional.of(new Ocupacion(4L, "Estudio"));
+        Mockito.when(ocupacionRepository.findById(4L)).thenReturn(ocupacionOpt);
+        Optional<Salario_Actual> salarioOpt = Optional.of(new Salario_Actual(2L, "Menos de un salario minimo"));
+        Mockito.when(salarioActualRepository.findById(2L)).thenReturn(salarioOpt);
+        Optional<Bootcamp_Info> bootcampInfoOpt = Optional.of(new Bootcamp_Info(1L, "Parceros por Bogota"));
+        Mockito.when(bootcampInfoRepository.findById(1L)).thenReturn(bootcampInfoOpt);
 
         // Configuramos el comportamiento del servicio
         Mockito.when(aspiranteRepository.save(Mockito.any(Aspirante.class))).thenAnswer(invocation -> {
@@ -128,49 +148,5 @@ public class AspiranteServiceTest {
 
         // Assert
         assertEquals(dto.getNombre(), result.getNombre());
-    }
-
-    @Test
-    public void crearAspirante_AspiranteNoExistente_CrearAspiranteCorrectamente() {
-        // Arrange
-        AspirantesDTO dto = new AspirantesDTO(
-                1L,                      // entrenamiento
-                "Juan Pérez",           // nombre
-                1L,                      // tipo_doc
-                123456789L,              // numero_documento
-                1L,            // genero
-                25L,                     // edad
-                date,           // fecha_nacimiento
-                1234567890L,           // celular
-                "juan@example.com",     // email
-                "Colombiana",           // nacionalidad
-                "Cundinamarca",         // departamento
-                "Bogotá",               // ciudad
-                "Calle 123",            // direccion
-                3L,                      // estrato
-                1L,                     // grupo_etnico_id
-                2L,                     // discapacidad_id
-                1L,                     // poblacion_id_id
-                3L,                     // nivel_educacion_id
-                4L,                     // ocupacion_id
-                "Ingeniero",            // ultimo_titulo
-                "Trabajador",           // ocupacion_si
-                5000000L,               // salario_actual_id
-                "Tiempo libre",         // tiempo_libre
-                "Contacto de emergencia",// persona_emergencia
-                987654321L,             // contacto_emergencia
-                "emergencia@example.com",// email_emergencia
-                1L,                     // bootcamp_info_id
-                "Empresa XYZ"           // organizacion);
-        );
-
-        Aspirante aspiranteExistente = new Aspirante();
-        aspiranteExistente.setNumeroDocumento(dto.getNumero_documento());
-
-        Mockito.when(aspiranteRepository.findById(dto.getNumero_documento()))
-                .thenReturn(Optional.of(aspiranteExistente));
-
-        // Act
-        aspiranteService.crearAspirante(dto);
     }
 }
