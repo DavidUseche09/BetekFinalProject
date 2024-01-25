@@ -21,13 +21,15 @@ public class TestGorillaService {
 
     // End-point para invitar a un aspirante por correo
     @Value("${https://app.testgorilla.com/api}")
-    private String testGorillaApiUrl;
+    private String emailInvitationUrl;
+    @Value("${https://app.testgorilla.com/api}")
+    private String listCandidatesUrl;
 
     @Value("-H Authorization: Token YOUR_FAKE_TOKEN")
     private String testGorillaApiToken;
 
     public InvitationResponse inviteCandidate(String assessmentId, InvitationRequest invitationRequest) {
-        String url = testGorillaApiUrl + "/assessments/" + assessmentId + "/invite_candidate/";
+        String url = emailInvitationUrl + "/assessments/" + assessmentId + "/invite_candidate/";
         HttpHeaders headers = new HttpHeaders();
         headers.set("Content-Type", "application/json");
         headers.set("Authorization", "Token " + testGorillaApiToken);
@@ -42,4 +44,6 @@ public class TestGorillaService {
         );
         return responseEntity.getBody();
     }
+
+
 }
