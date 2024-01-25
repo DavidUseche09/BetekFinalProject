@@ -7,6 +7,7 @@ import java.util.Date;
 @Entity
 @Table (name= "Aspirante")
 public class Aspirante {
+    // Agregar testTakerId (Preguntar profe)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected Long id;
