@@ -43,13 +43,11 @@ public class AspiranteService {
     }
     public Aspirante crearAspirante(AspirantesDTO dto) {
         Optional<Bootcamp_Info> botcampOptional = bootcampInfoRepository.findById(dto.getBootcamp_info_id());
-<<<<<<< HEAD
-       if(botcampOptional.isPresent()) {
+       /*if(botcampOptional.isPresent()) {
            Bootcamp_Info bootcampInfoResult = botcampOptional.get();
        }
-=======
+        */
         Bootcamp_Info bootcampInfoResult = new Bootcamp_Info(botcampOptional.get().getId(),botcampOptional.get().getDescripcion());
->>>>>>> 3466106301e16a1aa7aca18e4fa951a24a30e9e3
         Optional<Discapacidad> discapacidadOptional = discapacidadRepository.findById(dto.getDiscapacidad_id());
         Discapacidad discapacidadResult = new Discapacidad(discapacidadOptional.get().getId(),discapacidadOptional.get().getDescripcion());
         Optional<Entrenamiento> entrenamientoOptional = entrenamientoRepository.findById(dto.getEntrenamiento());
