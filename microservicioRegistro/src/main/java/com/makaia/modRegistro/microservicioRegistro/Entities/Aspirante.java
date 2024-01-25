@@ -67,6 +67,9 @@ public class Aspirante {
     @ManyToOne (optional = false)
     Estrato estrato;
 
+    public Aspirante() {
+    }
+
     public Aspirante(String nombre, Long numeroDocumento, Long edad, Date fechaNacimiento, Long celular, String email, String nacionalidad, String departamento, String ciudad, String direccion, String ultimoTitulo, String ocupacionSi, String tiempoLibre, String personaEmergencia, Long contactoEmergencia, String emailEmergencia, String organizacion, Tipo_Doc tipo_doc, Genero genero, GrupoEtnico grupo_etnico, Discapacidad discapacidad, PoblacionIdentificacion poblacion_Id, Nivel_Educacion nivel_educacion, Ocupacion ocupacion, Salario_Actual salario_actual, Bootcamp_Info bootcamp_info, Entrenamiento entrenamiento, Estrato estrato) {
         Nombre = nombre;
         NumeroDocumento = numeroDocumento;

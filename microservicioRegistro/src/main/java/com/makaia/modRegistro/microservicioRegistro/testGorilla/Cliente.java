@@ -9,6 +9,5 @@ public class Cliente {
         lugel.put("https://app.testgorilla.com/api/assessments/<ASSESSMENT_ID>/", @RequestBody hola);
         reutrn
     }
-
          */
 }

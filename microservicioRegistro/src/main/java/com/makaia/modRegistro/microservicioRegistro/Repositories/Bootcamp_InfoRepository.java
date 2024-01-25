@@ -8,5 +8,5 @@ import java.util.Optional;
 
 @Repository
 public interface Bootcamp_InfoRepository extends JpaRepository<Bootcamp_Info, Long> {
-Optional<Bootcamp_Info> findById(Long id);
+    Optional<Bootcamp_Info> findById(Long id);
 }

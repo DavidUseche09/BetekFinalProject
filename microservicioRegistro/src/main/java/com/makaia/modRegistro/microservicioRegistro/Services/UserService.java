@@ -15,23 +15,23 @@ import java.util.Optional;
 public class UserService {
     UsuarioRepository repository;
     RolesRepository rolesRepository;
+    PasswordEncoder passwordEncoder;
+
     @Autowired
-    public UserService(UsuarioRepository repository, RolesRepository rolesRepository) {
+    public UserService(UsuarioRepository repository, RolesRepository rolesRepository, PasswordEncoder passwordEncoder) {
         this.repository = repository;
         this.rolesRepository = rolesRepository;
+        this.passwordEncoder = passwordEncoder;
     }
-    @Autowired
-    PasswordEncoder passwordEncoder;
     public Usuario crearUsuario(UsersDTO dto){
         Usuario exists = this.repository.findByEmail(dto.getEmail());
         if (exists != null){
-            throw new RuntimeException("Aca se cambia esta excepcion");
+            throw new RuntimeException("Aca se cambia esta excepcion, pero rápido");
         }
       Optional<Roles> rolOptional = rolesRepository.findById(dto.getRol_id());
         Roles rolesResult = new Roles(rolOptional.get().getId(),rolOptional.get().getDescripcion());
         Usuario nuevoUsuario = new Usuario(dto.getEmail(), passwordEncoder.encode(dto.getPassword()),rolesResult);
         nuevoUsuario= this.repository.save(nuevoUsuario);
-        System.out.println(nuevoUsuario);
         return nuevoUsuario;
     }
 }
