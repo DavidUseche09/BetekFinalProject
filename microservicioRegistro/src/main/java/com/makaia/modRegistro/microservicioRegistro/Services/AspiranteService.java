@@ -40,12 +40,10 @@ public class AspiranteService {
         this.tipoDocRepository = tipoDocRepository;
     }
     public Aspirante crearAspirante(AspirantesDTO dto) {
-        String nombnre;
         Optional<Bootcamp_Info> botcampOptional = bootcampInfoRepository.findById(dto.getBootcamp_info_id());
-        Bootcamp_Info bootcampInfoResult = new Bootcamp_Info(botcampOptional.get().getId(),botcampOptional.get().getDescripcion());
-//        if(botcampOptional.isPresent()) {
-//            Bootcamp_Info bootcampInfoResult = botcampOptional.get();
-//        }
+       if(botcampOptional.isPresent()) {
+           Bootcamp_Info bootcampInfoResult = botcampOptional.get();
+       }
         Optional<Discapacidad> discapacidadOptional = discapacidadRepository.findById(dto.getDiscapacidad_id());
         Discapacidad discapacidadResult = new Discapacidad(discapacidadOptional.get().getId(),discapacidadOptional.get().getDescripcion());
         Optional<Entrenamiento> entrenamientoOptional = entrenamientoRepository.findById(dto.getEntrenamiento());
