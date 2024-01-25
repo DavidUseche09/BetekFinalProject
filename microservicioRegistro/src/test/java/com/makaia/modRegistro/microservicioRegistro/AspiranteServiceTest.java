@@ -14,10 +14,10 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
-import java.util.Optional;
+import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 public class AspiranteServiceTest {
@@ -106,30 +106,30 @@ public class AspiranteServiceTest {
         );
 
         Optional<Entrenamiento> entrenamientoOpt = Optional.of(new Entrenamiento(1L, "BackEnd"));
-        Mockito.when(entrenamientoRepository.findById(1L)).thenReturn(entrenamientoOpt);
+        when(entrenamientoRepository.findById(1L)).thenReturn(entrenamientoOpt);
         Optional<Tipo_Doc> tipoDocOpt = Optional.of(new Tipo_Doc(1L, "Cedula Ciudadania"));
-        Mockito.when(tipoDocRepository.findById(1L)).thenReturn(tipoDocOpt);
+        when(tipoDocRepository.findById(1L)).thenReturn(tipoDocOpt);
         Optional<Genero> generoOpt = Optional.of(new Genero(1L, "Masculino"));
-        Mockito.when(generoRepository.findById(1L)).thenReturn(generoOpt);
+        when(generoRepository.findById(1L)).thenReturn(generoOpt);
         Optional<Estrato> estratoOpt = Optional.of(new Estrato(3L, 3));
-        Mockito.when(estratoRepository.findById(3L)).thenReturn(estratoOpt);
+        when(estratoRepository.findById(3L)).thenReturn(estratoOpt);
         Optional<GrupoEtnico> grupoEtnicoOpt = Optional.of(new GrupoEtnico(1L, "Indigena"));
-        Mockito.when(grupoEtnicoRepository.findById(1L)).thenReturn(grupoEtnicoOpt);
+        when(grupoEtnicoRepository.findById(1L)).thenReturn(grupoEtnicoOpt);
         Optional<Discapacidad> discapacidadOpt = Optional.of(new Discapacidad(2L, "Ninguna"));
-        Mockito.when(discapacidadRepository.findById(2L)).thenReturn(discapacidadOpt);
+        when(discapacidadRepository.findById(2L)).thenReturn(discapacidadOpt);
         Optional<PoblacionIdentificacion> poblacionOpt = Optional.of(new PoblacionIdentificacion(1L, "Desplazado"));
-        Mockito.when(poblacionIdentificacionRepository.findById(1L)).thenReturn(poblacionOpt);
+        when(poblacionIdentificacionRepository.findById(1L)).thenReturn(poblacionOpt);
         Optional<Nivel_Educacion> nivelEducacionOpt = Optional.of(new Nivel_Educacion(3L, "Tecnico"));
-        Mockito.when(nivelEducacionRepository.findById(3L)).thenReturn(nivelEducacionOpt);
+        when(nivelEducacionRepository.findById(3L)).thenReturn(nivelEducacionOpt);
         Optional<Ocupacion> ocupacionOpt = Optional.of(new Ocupacion(4L, "Estudio"));
-        Mockito.when(ocupacionRepository.findById(4L)).thenReturn(ocupacionOpt);
+        when(ocupacionRepository.findById(4L)).thenReturn(ocupacionOpt);
         Optional<Salario_Actual> salarioOpt = Optional.of(new Salario_Actual(2L, "Menos de un salario minimo"));
-        Mockito.when(salarioActualRepository.findById(2L)).thenReturn(salarioOpt);
+        when(salarioActualRepository.findById(2L)).thenReturn(salarioOpt);
         Optional<Bootcamp_Info> bootcampInfoOpt = Optional.of(new Bootcamp_Info(1L, "Parceros por Bogota"));
-        Mockito.when(bootcampInfoRepository.findById(1L)).thenReturn(bootcampInfoOpt);
+        when(bootcampInfoRepository.findById(1L)).thenReturn(bootcampInfoOpt);
 
         // Configuramos el comportamiento del servicio
-        Mockito.when(aspiranteRepository.save(Mockito.any(Aspirante.class))).thenAnswer(invocation -> {
+        when(aspiranteRepository.save(Mockito.any(Aspirante.class))).thenAnswer(invocation -> {
             Aspirante aspiranteToSave = invocation.getArgument(0);
             return new Aspirante(aspiranteToSave.getNombre(),aspiranteToSave.getNumeroDocumento(),
                     aspiranteToSave.getEdad(), aspiranteToSave.getFechaNacimiento(), aspiranteToSave.getCelular(),
@@ -148,5 +148,84 @@ public class AspiranteServiceTest {
 
         // Assert
         assertEquals(dto.getNombre(), result.getNombre());
+    }
+
+    @Test
+    public void eliminarAspirantePorId_DeberiaEliminarCorrectamente() {
+        // Arrange
+        Long aspiranteId = 1L;
+        Aspirante aspiranteExistente = new Aspirante();
+        when(aspiranteRepository.findById(aspiranteId)).thenReturn(Optional.of(aspiranteExistente));
+
+        // Act
+        aspiranteService.eliminarAspirantePorId(aspiranteId);
+
+        // Assert
+        verify(aspiranteRepository, times(1)).deleteById(aspiranteId);
+    }
+
+    @Test
+    public void eliminarAspirantePorId_DeberiaLanzarExcepcionCuandoNoExiste() {
+        // Arrange
+        Long aspiranteId = 1L;
+        when(aspiranteRepository.findById(aspiranteId)).thenReturn(Optional.empty());
+
+        // Act y Assert
+        assertThrows(NoSuchElementException.class,
+                () -> aspiranteService.eliminarAspirantePorId(aspiranteId));
+    }
+
+    @Test
+    public void obtenerTodosLosAspirantes_DeberiaRetornarListaVaciaCuandoNoHayAspirantes() {
+        // Arrange
+        when(aspiranteRepository.findAll()).thenReturn(Collections.emptyList());
+
+        // Act
+        List<Aspirante> result = aspiranteService.obtenerTodosLosAspirantes();
+
+        // Assert
+        assertNotNull(result);
+        assertTrue(result.isEmpty());
+    }
+
+    @Test
+    public void obtenerTodosLosAspirantes_DeberiaRetornarListaNoVaciaCuandoHayAspirantes() {
+        // Arrange
+        List<Aspirante> aspirantes = Arrays.asList(new Aspirante(), new Aspirante());
+        when(aspiranteRepository.findAll()).thenReturn(aspirantes);
+
+        // Act
+        List<Aspirante> result = aspiranteService.obtenerTodosLosAspirantes();
+
+        // Assert
+        assertNotNull(result);
+        assertFalse(result.isEmpty());
+        assertEquals(aspirantes.size(), result.size());
+    }
+
+    @Test
+    public void obtenerAspirantePorId_DeberiaRetornarAspiranteCuandoExiste() {
+        // Arrange
+        Long aspiranteId = 1L;
+        Aspirante aspiranteExistente = new Aspirante();
+        when(aspiranteRepository.findById(aspiranteId)).thenReturn(Optional.of(aspiranteExistente));
+
+        // Act
+        Aspirante result = aspiranteService.obtenerAspirantePorId(aspiranteId);
+
+        // Assert
+        assertNotNull(result);
+        assertEquals(aspiranteExistente, result);
+    }
+
+    @Test
+    public void obtenerAspirantePorId_DeberiaLanzarExcepcionCuandoNoExiste() {
+        // Arrange
+        Long aspiranteId = 1L;
+        when(aspiranteRepository.findById(aspiranteId)).thenReturn(Optional.empty());
+
+        // Act y Assert
+        assertThrows(NoSuchElementException.class,
+                () -> aspiranteService.obtenerAspirantePorId(aspiranteId));
     }
 }

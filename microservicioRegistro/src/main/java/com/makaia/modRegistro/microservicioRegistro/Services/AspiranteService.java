@@ -7,6 +7,8 @@ import com.makaia.modRegistro.microservicioRegistro.Repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @Service
@@ -41,9 +43,13 @@ public class AspiranteService {
     }
     public Aspirante crearAspirante(AspirantesDTO dto) {
         Optional<Bootcamp_Info> botcampOptional = bootcampInfoRepository.findById(dto.getBootcamp_info_id());
+<<<<<<< HEAD
        if(botcampOptional.isPresent()) {
            Bootcamp_Info bootcampInfoResult = botcampOptional.get();
        }
+=======
+        Bootcamp_Info bootcampInfoResult = new Bootcamp_Info(botcampOptional.get().getId(),botcampOptional.get().getDescripcion());
+>>>>>>> 3466106301e16a1aa7aca18e4fa951a24a30e9e3
         Optional<Discapacidad> discapacidadOptional = discapacidadRepository.findById(dto.getDiscapacidad_id());
         Discapacidad discapacidadResult = new Discapacidad(discapacidadOptional.get().getId(),discapacidadOptional.get().getDescripcion());
         Optional<Entrenamiento> entrenamientoOptional = entrenamientoRepository.findById(dto.getEntrenamiento());
@@ -96,5 +102,28 @@ public class AspiranteService {
                 );
         newAspirante = this.repository.save(newAspirante);
         return newAspirante;
+    }
+
+    public Aspirante obtenerAspirantePorId(Long aspiranteId) {
+        Optional<Aspirante> aspiranteOptional = repository.findById(aspiranteId);
+        if (aspiranteOptional.isPresent()) {
+            return aspiranteOptional.get();
+        } else {
+            throw new NoSuchElementException("No se encontró un aspirante con el ID proporcionado: " + aspiranteId);
+        }
+    }
+
+    public void eliminarAspirantePorId(Long aspiranteId) {
+        Optional<Aspirante> aspiranteOptional = repository.findById(aspiranteId);
+
+        if (aspiranteOptional.isPresent()) {
+            repository.deleteById(aspiranteId);
+        } else {
+            throw new NoSuchElementException("No se encontró un aspirante con el ID proporcionado: " + aspiranteId);
+        }
+    }
+
+    public List<Aspirante> obtenerTodosLosAspirantes() {
+        return repository.findAll();
     }
 }
