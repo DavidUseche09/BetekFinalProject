@@ -58,6 +58,9 @@ public class AspiranteServiceTest {
     @Mock
     private Tipo_DocRepository tipoDocRepository;
 
+    @Mock
+    private ResultadosTestGorillaRepository testGorillaRepository;
+
     @InjectMocks
     private AspiranteService aspiranteService;
 
@@ -102,7 +105,8 @@ public class AspiranteServiceTest {
                 987654321L,             // contacto_emergencia
                 "emergencia@example.com",// email_emergencia
                 1L,                     // bootcamp_info_id
-                "Empresa XYZ"           // organizacion);
+                "Empresa XYZ",           // organizacion);
+                1L                      // resultadosTestGorillaId
         );
 
         Optional<Entrenamiento> entrenamientoOpt = Optional.of(new Entrenamiento(1L, "BackEnd"));
@@ -127,6 +131,8 @@ public class AspiranteServiceTest {
         when(salarioActualRepository.findById(2L)).thenReturn(salarioOpt);
         Optional<Bootcamp_Info> bootcampInfoOpt = Optional.of(new Bootcamp_Info(1L, "Parceros por Bogota"));
         when(bootcampInfoRepository.findById(1L)).thenReturn(bootcampInfoOpt);
+        Optional<ResultadosTestGorilla> testGorillaOpt = Optional.of(new ResultadosTestGorilla(1L, "Big 5 (OCEAN)", null, "published", true, 4L, "Nothing", "big_5", false, "2-1-1-2-1_32.0-34.0-33.0-35.0-32.0"));
+        when(testGorillaRepository.findById(1L)).thenReturn(testGorillaOpt);
 
         // Configuramos el comportamiento del servicio
         when(aspiranteRepository.save(Mockito.any(Aspirante.class))).thenAnswer(invocation -> {
@@ -140,7 +146,7 @@ public class AspiranteServiceTest {
                     aspiranteToSave.getTipo_doc(), aspiranteToSave.getGenero(),aspiranteToSave.getGrupo_etnico(),
                     aspiranteToSave.getDiscapacidad(), aspiranteToSave.getPoblacion_Id(), aspiranteToSave.getNivel_educacion(),
                     aspiranteToSave.getOcupacion(), aspiranteToSave.getSalario_actual(), aspiranteToSave.getBootcamp_info(),
-                    aspiranteToSave.getEntrenamiento(), aspiranteToSave.getEstrato());
+                    aspiranteToSave.getEntrenamiento(), aspiranteToSave.getEstrato(), aspiranteToSave.getResultadosTestGorilla());
         });
 
         // Act

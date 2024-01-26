@@ -9,9 +9,9 @@ import java.util.Date;
 public class Aspirante {
 
     // Preguntas pa tomorrow
-    // Agregar testTakerId (Preguntar profe)
+    // Agregar testTakerId (Preguntar profe) (Hecho)
     // Preguntar donde se guardaran esos resultados (Base de datos o una cola)
-    // Rabbit e implementacion de los otros modulos\
+    // Rabbit e implementacion de los otros modulos
     // Preguntar rol de programador en CustomDetailService
 
     @Id
@@ -73,11 +73,13 @@ public class Aspirante {
     Entrenamiento entrenamiento;
     @ManyToOne (optional = false)
     Estrato estrato;
+    @ManyToOne (optional = false)
+    ResultadosTestGorilla resultadosTestGorilla;
+
 
     public Aspirante() {
     }
-
-    public Aspirante(String nombre, Long numeroDocumento, Long edad, Date fechaNacimiento, Long celular, String email, String nacionalidad, String departamento, String ciudad, String direccion, String ultimoTitulo, String ocupacionSi, String tiempoLibre, String personaEmergencia, Long contactoEmergencia, String emailEmergencia, String organizacion, Tipo_Doc tipo_doc, Genero genero, GrupoEtnico grupo_etnico, Discapacidad discapacidad, PoblacionIdentificacion poblacion_Id, Nivel_Educacion nivel_educacion, Ocupacion ocupacion, Salario_Actual salario_actual, Bootcamp_Info bootcamp_info, Entrenamiento entrenamiento, Estrato estrato) {
+    public Aspirante(String nombre, Long numeroDocumento, Long edad, Date fechaNacimiento, Long celular, String email, String nacionalidad, String departamento, String ciudad, String direccion, String ultimoTitulo, String ocupacionSi, String tiempoLibre, String personaEmergencia, Long contactoEmergencia, String emailEmergencia, String organizacion, Tipo_Doc tipo_doc, Genero genero, GrupoEtnico grupo_etnico, Discapacidad discapacidad, PoblacionIdentificacion poblacion_Id, Nivel_Educacion nivel_educacion, Ocupacion ocupacion, Salario_Actual salario_actual, Bootcamp_Info bootcamp_info, Entrenamiento entrenamiento, Estrato estrato, ResultadosTestGorilla resultadosTestGorilla) {
         Nombre = nombre;
         NumeroDocumento = numeroDocumento;
         Edad = edad;
@@ -106,6 +108,7 @@ public class Aspirante {
         this.bootcamp_info = bootcamp_info;
         this.entrenamiento = entrenamiento;
         this.estrato = estrato;
+        this.resultadosTestGorilla = resultadosTestGorilla;
     }
 
     public Long getId() {
@@ -115,6 +118,7 @@ public class Aspirante {
     public void setId(Long id) {
         this.id = id;
     }
+
 
     public String getNombre() {
         return Nombre;
@@ -335,8 +339,14 @@ public class Aspirante {
     public Estrato getEstrato() {
         return estrato;
     }
-
     public void setEstrato(Estrato estrato) {
         this.estrato = estrato;
+    }
+
+    public ResultadosTestGorilla getResultadosTestGorilla() {
+        return resultadosTestGorilla;
+    }
+    public void setResultadosTestGorilla(ResultadosTestGorilla resultadosTestGorilla) {
+        this.resultadosTestGorilla = resultadosTestGorilla;
     }
 }
