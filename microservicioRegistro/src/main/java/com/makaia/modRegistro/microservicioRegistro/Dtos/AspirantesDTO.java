@@ -63,11 +63,12 @@ public class AspirantesDTO {
     @NotBlank(message = "Campo Obligatorio")
     private  Long bootcamp_info_id;
     private  String organizacion;
+    private  Long resultadosTestGorillaId;
 
     public AspirantesDTO() {
     }
 
-    public AspirantesDTO(Long entrenamiento, String nombre, Long tipo_doc, Long numero_documento, Long genero, Long edad, Date fecha_nacimiento, Long celular, String email, String nacionalidad, String departamento, String ciudad, String direccion, Long estrato, Long grupo_etnico_id, Long discapacidad_id, Long poblacion_id_id, Long nivel_educacion_id, Long ocupacion_id, String ultimo_titulo, String ocupacion_si, Long salario_actual_id, String tiempo_libre, String persona_emergencia, Long contacto_emergencia, String email_emergencia, Long bootcamp_info_id, String organizacion) {
+    public AspirantesDTO(Long entrenamiento, String nombre, Long tipo_doc, Long numero_documento, Long genero, Long edad, Date fecha_nacimiento, Long celular, String email, String nacionalidad, String departamento, String ciudad, String direccion, Long estrato, Long grupo_etnico_id, Long discapacidad_id, Long poblacion_id_id, Long nivel_educacion_id, Long ocupacion_id, String ultimo_titulo, String ocupacion_si, Long salario_actual_id, String tiempo_libre, String persona_emergencia, Long contacto_emergencia, String email_emergencia, Long bootcamp_info_id, String organizacion, Long resultadosTestGorillaId) {
         this.entrenamiento = entrenamiento;
         this.nombre = nombre;
         this.tipo_doc = tipo_doc;
@@ -96,6 +97,7 @@ public class AspirantesDTO {
         this.email_emergencia = email_emergencia;
         this.bootcamp_info_id = bootcamp_info_id;
         this.organizacion = organizacion;
+        this.resultadosTestGorillaId = resultadosTestGorillaId;
     }
 
     public Long getEntrenamiento() {
@@ -320,5 +322,12 @@ public class AspirantesDTO {
 
     public void setOrganizacion(String organizacion) {
         this.organizacion = organizacion;
+    }
+
+    public Long getResultadosTestGorillaId() {
+        return resultadosTestGorillaId;
+    }
+    public void setResultadosTestGorillaId(Long resultadosTestGorillaId) {
+        this.resultadosTestGorillaId = resultadosTestGorillaId;
     }
 }

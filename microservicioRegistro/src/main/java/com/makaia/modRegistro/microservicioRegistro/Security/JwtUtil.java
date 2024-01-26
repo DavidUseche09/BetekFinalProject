@@ -1,5 +1,6 @@
 package com.makaia.modRegistro.microservicioRegistro.Security;
 
+import com.makaia.modRegistro.microservicioRegistro.Entities.Roles;
 import com.makaia.modRegistro.microservicioRegistro.Entities.Usuario;
 import io.jsonwebtoken.*;
 import jakarta.servlet.http.HttpServlet;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Component;
 
 import javax.naming.AuthenticationException;
 import java.util.Date;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 @Component
@@ -22,12 +24,14 @@ public class JwtUtil {
     public JwtUtil() {
         this.jwtParser = Jwts.parser().setSigningKey(secret_key);
     }
-    public  String crearToken(Usuario usuario){
+    public  String crearToken(Usuario usuario, List<Roles> roles){
         Claims claims =Jwts.claims().setSubject(usuario.getEmail());
+        List<String> rolesName = roles.stream().map(Roles::getDescripcion).toList();
         Date tokenCreateTime = new Date();
         Date tokenValidity = new Date(tokenCreateTime.getTime()+ TimeUnit.MINUTES.toMillis(accessTokenValidity));
         return Jwts.builder()
                 .setClaims(claims)
+                .claim("roles", rolesName)
                 .setExpiration(tokenValidity)
                 .signWith(SignatureAlgorithm.HS256, secret_key)
                 .compact();
@@ -35,7 +39,7 @@ public class JwtUtil {
     private Claims parseJwtClaims(String token){
         return jwtParser.parseClaimsJws(token).getBody();
     }
-    private Claims resolveClaims(HttpServletRequest req){
+    public Claims resolveClaims(HttpServletRequest req){
         try{
             String token = resolveToken(req);
             if (token != null){
@@ -64,4 +68,11 @@ public class JwtUtil {
             throw e;
         }
     }
+    public  String getEmail (Claims claims){
+        return claims.getSubject();
+    }
+    public static  List<String> getRoles (Claims claims){
+        return (List<String>) claims.get("roles");
+    }
+
 }
