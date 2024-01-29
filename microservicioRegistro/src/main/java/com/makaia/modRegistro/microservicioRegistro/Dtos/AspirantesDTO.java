@@ -3,6 +3,7 @@ package com.makaia.modRegistro.microservicioRegistro.Dtos;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+import org.springframework.stereotype.Component;
 
 import javax.xml.crypto.Data;
 import java.util.Date;
