@@ -8,5 +8,5 @@ import java.util.Optional;
 
 @Repository
 public interface ResultadosTestGorillaRepository extends JpaRepository<ResultadosTestGorilla, Long> {
-    Optional<ResultadosTestGorilla> findById(Long id);
+    Optional<ResultadosTestGorilla> findById(Long test_id);
 }

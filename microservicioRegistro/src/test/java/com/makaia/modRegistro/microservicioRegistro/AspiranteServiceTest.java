@@ -131,8 +131,8 @@ public class AspiranteServiceTest {
         when(salarioActualRepository.findById(2L)).thenReturn(salarioOpt);
         Optional<Bootcamp_Info> bootcampInfoOpt = Optional.of(new Bootcamp_Info(1L, "Parceros por Bogota"));
         when(bootcampInfoRepository.findById(1L)).thenReturn(bootcampInfoOpt);
-        Optional<ResultadosTestGorilla> testGorillaOpt = Optional.of(new ResultadosTestGorilla(1L, "Big 5 (OCEAN)", null, "published", true, 4L, "Nothing", "big_5", false, "2-1-1-2-1_32.0-34.0-33.0-35.0-32.0"));
-        when(testGorillaRepository.findById(1L)).thenReturn(testGorillaOpt);
+       // Optional<ResultadosTestGorilla> testGorillaOpt = Optional.of(new ResultadosTestGorilla(1L, "Big 5 (OCEAN)", null, "published", true, 4L, "Nothing", "big_5", false, "2-1-1-2-1_32.0-34.0-33.0-35.0-32.0"));
+       // when(testGorillaRepository.findById(1L)).thenReturn(testGorillaOpt);
 
         // Configuramos el comportamiento del servicio
         when(aspiranteRepository.save(Mockito.any(Aspirante.class))).thenAnswer(invocation -> {
