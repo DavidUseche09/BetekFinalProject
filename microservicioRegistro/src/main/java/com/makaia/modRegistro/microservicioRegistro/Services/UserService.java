@@ -26,7 +26,7 @@ public class UserService {
     public Usuario crearUsuario(UsersDTO dto){
         Usuario exists = this.repository.findByEmail(dto.getEmail());
         if (exists != null){
-            throw new RuntimeException("Aca se cambia esta excepcion, pero rápido");
+//            throw new RuntimeException("Aca se cambia esta excepcion, pero rápido");
         }
       Optional<Roles> rolOptional = rolesRepository.findById(dto.getRol_id());
         Roles rolesResult = new Roles(rolOptional.get().getId(),rolOptional.get().getDescripcion());
