@@ -8,8 +8,8 @@ import java.util.List;
 @Table
 public class ResultadosTestGorilla {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    protected Long id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long test_id;
     @Column(length = 150)
     private String name;
     @Column(length = 150)
@@ -18,8 +18,7 @@ public class ResultadosTestGorilla {
     private String status;
     @Column(length = 50)
     private Boolean completed;
-    @Column
-    private Long test_id;
+
     @Column(length = 200)
     private String custom_questions;
     @Column(length = 150)
@@ -34,25 +33,17 @@ public class ResultadosTestGorilla {
 
     public ResultadosTestGorilla() {
     }
-    public ResultadosTestGorilla(Long id, String name, Long score, String status, Boolean completed, Long test_id, String custom_questions, String algorithm, Boolean is_code_test, String score_display) {
-        this.id = id;
+
+    public ResultadosTestGorilla(Long test_id, String name, Long score, String status, Boolean completed, String custom_questions, String algorithm, Boolean is_code_test, String score_display) {
+        this.test_id = test_id;
         this.name = name;
         this.score = score;
         this.status = status;
         this.completed = completed;
-        this.test_id = test_id;
         this.custom_questions = custom_questions;
         this.algorithm = algorithm;
         this.is_code_test = is_code_test;
         this.score_display = score_display;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getName() {

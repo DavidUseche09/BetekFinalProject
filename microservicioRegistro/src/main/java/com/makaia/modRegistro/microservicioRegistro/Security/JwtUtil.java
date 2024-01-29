@@ -22,11 +22,11 @@ public class JwtUtil {
     private final String TOKEN_PREFIX = "Bearer ";
 
     public JwtUtil() {
-        this.jwtParser = Jwts.parser().setSigningKey(secret_key);
+        this.jwtParser = (JwtParser) Jwts.parser().setSigningKey(secret_key);
     }
     public  String crearToken(Usuario usuario, List<Roles> roles){
-        Claims claims =Jwts.claims().setSubject(usuario.getEmail());
         List<String> rolesName = roles.stream().map(Roles::getDescripcion).toList();
+        Claims claims = (Claims) Jwts.claims().setSubject(usuario.getEmail());
         Date tokenCreateTime = new Date();
         Date tokenValidity = new Date(tokenCreateTime.getTime()+ TimeUnit.MINUTES.toMillis(accessTokenValidity));
         return Jwts.builder()
