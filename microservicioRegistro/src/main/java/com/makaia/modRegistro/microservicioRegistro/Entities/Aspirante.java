@@ -73,7 +73,7 @@ public class Aspirante {
     Entrenamiento entrenamiento;
     @ManyToOne (optional = false)
     Estrato estrato;
-    @ManyToOne (optional = false)
+    @ManyToOne ()
     ResultadosTestGorilla resultadosTestGorilla;
 
 
