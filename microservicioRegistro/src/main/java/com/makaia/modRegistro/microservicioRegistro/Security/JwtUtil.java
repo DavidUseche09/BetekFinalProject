@@ -2,8 +2,6 @@ package com.makaia.modRegistro.microservicioRegistro.Security;
 
 import com.makaia.modRegistro.microservicioRegistro.Entities.Roles;
 import com.makaia.modRegistro.microservicioRegistro.Entities.Usuario;
-import io.jsonwebtoken.*;
-import io.jsonwebtoken.Claims;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Component;
 
@@ -16,14 +14,15 @@ import java.util.concurrent.TimeUnit;
 public class JwtUtil {
     private final String secret_key = "mysecretkey";
     private long accessTokenValidity = 60*60*1000;
-    private final JwtParserBuilder jwtParser;
+    private final JwtParser jwtParser;
 
     private final String TOKEN_HEADER = "Authorization";
     private final String TOKEN_PREFIX = "Bearer ";
 
     public JwtUtil() {
-        this.jwtParser = Jwts.parser().setSigningKey(secret_key);
+        this.jwtParser = (JwtParser) Jwts.parser().setSigningKey(secret_key);
     }
+
     public String crearToken(Usuario usuario, List<Roles> roles) {
         List<String> rolesName = roles.stream().map(Roles::getDescripcion).toList();
         Claims claims = Jwts.claims().setSubject(usuario.getEmail());
@@ -38,10 +37,10 @@ public class JwtUtil {
                 .compact();
     }
 
-    private ClaimsBuilder parseJwtClaims(String token){
+    private Claims parseJwtClaims(String token){
         return jwtParser.parseClaimsJws(token).getBody();
     }
-    public ClaimsBuilder resolveClaims(HttpServletRequest req){
+    public Claims resolveClaims(HttpServletRequest req){
         try{
             String token = resolveToken(req);
             if (token != null){

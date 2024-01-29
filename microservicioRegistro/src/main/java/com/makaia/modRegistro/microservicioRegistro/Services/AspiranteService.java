@@ -73,7 +73,7 @@ public class AspiranteService {
         Optional <Tipo_Doc> tipo_docOptional = tipoDocRepository.findById(dto.getTipo_doc());
         Tipo_Doc tipodocResult = new Tipo_Doc(tipo_docOptional.get().getId(),tipo_docOptional.get().getDescripcion());
         Optional<ResultadosTestGorilla> resultadosTestGorillaOptional = testGorillaRepository.findById(dto.getResultadosTestGorillaId());
-        ResultadosTestGorilla testGorillares = new ResultadosTestGorilla(resultadosTestGorillaOptional.get().getId(),resultadosTestGorillaOptional.get().getName(),resultadosTestGorillaOptional.get().getScore(),resultadosTestGorillaOptional.get().getStatus(),resultadosTestGorillaOptional.get().getCompleted(),resultadosTestGorillaOptional.get().getTest_id(),resultadosTestGorillaOptional.get().getCustom_questions(),resultadosTestGorillaOptional.get().getAlgorithm(),resultadosTestGorillaOptional.get().getIs_code_test(),resultadosTestGorillaOptional.get().getScore_display());
+        ResultadosTestGorilla testGorillares = new ResultadosTestGorilla(resultadosTestGorillaOptional.get().getTest_id(),resultadosTestGorillaOptional.get().getName(),resultadosTestGorillaOptional.get().getScore(),resultadosTestGorillaOptional.get().getStatus(),resultadosTestGorillaOptional.get().getCompleted(),resultadosTestGorillaOptional.get().getCustom_questions(),resultadosTestGorillaOptional.get().getAlgorithm(),resultadosTestGorillaOptional.get().getIs_code_test(),resultadosTestGorillaOptional.get().getScore_display());
         Aspirante newAspirante = new Aspirante(
                 dto.getNombre(),
                 dto.getNumero_documento(),
@@ -107,6 +107,7 @@ public class AspiranteService {
                 );
         newAspirante = this.repository.save(newAspirante);
         return newAspirante;
+
     }
 
     public Aspirante obtenerAspirantePorId(Long aspiranteId) {
