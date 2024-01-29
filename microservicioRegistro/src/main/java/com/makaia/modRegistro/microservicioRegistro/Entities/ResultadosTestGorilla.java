@@ -8,7 +8,7 @@ import java.util.List;
 @Table
 public class ResultadosTestGorilla {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue()
     private Long test_id;
     @Column(length = 150)
     private String name;

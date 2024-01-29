@@ -26,7 +26,7 @@ public class AspiranteService {
     Salario_ActualRepository salarioActualRepository;
     Tipo_DocRepository tipoDocRepository;
     ResultadosTestGorillaRepository testGorillaRepository;
-
+@Autowired
     public AspiranteService(AspiranteRepository repository, Bootcamp_InfoRepository bootcampInfoRepository, DiscapacidadRepository discapacidadRepository, EntrenamientoRepository entrenamientoRepository, EstratoRepository estratoRepository, GeneroRepository generoRepository, GrupoEtnicoRepository grupoEtnicoRepository, Nivel_EducacionRepository nivelEducacionRepository, OcupacionRepository ocupacionRepository, PoblacionIdentificacionRepository poblacionIdentificacionRepository, Salario_ActualRepository salarioActualRepository, Tipo_DocRepository tipoDocRepository, ResultadosTestGorillaRepository testGorillaRepository) {
         this.repository = repository;
         this.bootcampInfoRepository = bootcampInfoRepository;
@@ -43,7 +43,7 @@ public class AspiranteService {
         this.testGorillaRepository = testGorillaRepository;
     }
 
-    @Autowired
+
 
     public Aspirante crearAspirante(AspirantesDTO dto) {
         Optional<Bootcamp_Info> botcampOptional = bootcampInfoRepository.findById(dto.getBootcamp_info_id());
