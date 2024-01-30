@@ -50,7 +50,7 @@ public class JwtAuthorizationFilter  extends OncePerRequestFilter {
                 SecurityContextHolder.getContext().setAuthentication(authentication);
             }
         }catch (Exception e){
-            errorDetails.put("message", "Erro de autenticación");
+            errorDetails.put("message", "Error de autenticación");
             errorDetails.put("details", e.getMessage());
             response.setStatus(HttpStatus.FORBIDDEN.value());
             response.setContentType(MediaType.APPLICATION_JSON_VALUE);
