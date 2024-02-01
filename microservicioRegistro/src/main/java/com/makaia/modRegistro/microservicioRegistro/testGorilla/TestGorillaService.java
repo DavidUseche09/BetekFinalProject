@@ -1,5 +1,6 @@
 package com.makaia.modRegistro.microservicioRegistro.testGorilla;
 
+import com.makaia.modRegistro.microservicioRegistro.Entities.ResultadosTestGorilla;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
@@ -66,7 +67,7 @@ public class TestGorillaService  {
         return Arrays.asList(response.getBody());
     }
 
-    public List<TestGorillaResultDTO> getAssessmentResults(String assessmentId, String testTakerId) {
+    public List<TestGorillaResultDTO> getAssessmentResults(String assessmentId, ResultadosTestGorilla testTakerId) {
         String url = testGorillaUrl + "/assessments/results/?candidature__assessment=" + assessmentId
                 + "&candidature__test_taker=" + testTakerId;
 
@@ -87,7 +88,6 @@ public class TestGorillaService  {
             return Arrays.asList(resultsArray);
         } else {
             return Collections.emptyList();
-
         }
     }
 }
