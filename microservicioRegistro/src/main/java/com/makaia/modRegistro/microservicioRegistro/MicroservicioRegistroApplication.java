@@ -9,4 +9,5 @@ public class MicroservicioRegistroApplication {
 		SpringApplication.run(MicroservicioRegistroApplication.class, args);
 	}
 
+
 }

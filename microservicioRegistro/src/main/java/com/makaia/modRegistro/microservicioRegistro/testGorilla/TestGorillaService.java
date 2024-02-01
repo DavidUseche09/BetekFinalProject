@@ -1,5 +1,6 @@
 package com.makaia.modRegistro.microservicioRegistro.testGorilla;
 
+import com.makaia.modRegistro.microservicioRegistro.Entities.ResultadosTestGorilla;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
@@ -14,7 +15,7 @@ import java.util.Collections;
 import java.util.List;
 
 @Service
-public class TestGorillaService {
+public class TestGorillaService  {
 
     private final RestTemplate restTemplate;
 
@@ -23,24 +24,16 @@ public class TestGorillaService {
         this.restTemplate = restTemplate;
     }
 
-    // End-point para invitar a un aspirante por correo
-    @Value("${https://app.testgorilla.com/api}")
-    private String emailInvitationUrl;
-
-    // End-point para listar candidatos invitados
-    @Value("${https://app.testgorilla.com/api}")
-    private String listCandidatesUrl;
-
-    // End-point para recibir resultados de los aspirantes
-    @Value("${https://app.testgorilla.com/api}")
-    private String testResultUrl;
+    // End-point de testGorilla
+    @Value("${testGorillaUrl}")
+    private String testGorillaUrl;
 
     // End-point del token imitador
     @Value("-H Authorization: Token YOUR_FAKE_TOKEN")
     private String testGorillaApiToken;
 
     public InvitationResponse inviteCandidate(String assessmentId, InvitationRequest invitationRequest) {
-        String url = emailInvitationUrl + "/assessments/" + assessmentId + "/invite_candidate/";
+        String url = testGorillaUrl + "/assessments/" + assessmentId + "/invite_candidate/";
         HttpHeaders headers = new HttpHeaders();
         headers.set("Content-Type", "application/json");
         headers.set("Authorization", "Token " + testGorillaApiToken);
@@ -57,7 +50,7 @@ public class TestGorillaService {
     }
 
     public List<TestGorillaCandidateDTO> getInvitedCandidates(String assessmentId) {
-        String url = listCandidatesUrl + "/assessments/candidature/?assessment=" + assessmentId;
+        String url = testGorillaUrl + "/assessments/candidature/?assessment=" + assessmentId;
 
         HttpHeaders headers = new HttpHeaders();
         headers.set("Authorization", "Token " + testGorillaApiToken);
@@ -74,8 +67,8 @@ public class TestGorillaService {
         return Arrays.asList(response.getBody());
     }
 
-    public List<TestGorillaResultDTO> getAssessmentResults(String assessmentId, String testTakerId) {
-        String url = testResultUrl + "/assessments/results/?candidature__assessment=" + assessmentId
+    public List<TestGorillaResultDTO> getAssessmentResults(String assessmentId, ResultadosTestGorilla testTakerId) {
+        String url = testGorillaUrl + "/assessments/results/?candidature__assessment=" + assessmentId
                 + "&candidature__test_taker=" + testTakerId;
 
         HttpHeaders headers = new HttpHeaders();
@@ -95,7 +88,6 @@ public class TestGorillaService {
             return Arrays.asList(resultsArray);
         } else {
             return Collections.emptyList();
-
         }
     }
 }

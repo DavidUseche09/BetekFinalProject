@@ -3,7 +3,6 @@ package com.makaia.modRegistro.microservicioRegistro.Security;
 import com.makaia.modRegistro.microservicioRegistro.Entities.Roles;
 import com.makaia.modRegistro.microservicioRegistro.Entities.Usuario;
 import io.jsonwebtoken.*;
-import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Component;
 
