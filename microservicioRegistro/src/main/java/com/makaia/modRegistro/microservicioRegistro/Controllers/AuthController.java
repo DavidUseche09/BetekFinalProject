@@ -23,14 +23,15 @@ public class AuthController {
         this.authenticationManager = authenticationManager;
         this.jwtUtil = jwtUtil;
     }
-    @ResponseBody
+   /* @ResponseBody
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public ResponseBody login(@ResponseBody LoginRequestDto loginReq){
         try {
             Authentication authentication = authenticationManager.authenticate(
-                    new UsernamePasswordAuthenticationToken(loginReq.getEmail(),loginReq.getPassword()));
+                    new UsernamePasswordAuthenticationToken(loginReq.getEmail(), loginReq.getPassword()));
             SecurityContextHolder.getContext().setAuthentication(authentication);
 
         }
+
+    */
     }
-}
