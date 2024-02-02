@@ -24,15 +24,26 @@ public class UserService {
         this.rolesRepository = rolesRepository;
         this.passwordEncoder = passwordEncoder;
     }
-    public Usuario crearUsuario(UsersDTO dto){
-        Usuario exists = this.repository.findByEmail(dto.getEmail());
-        if (exists != null){
+
+    public Usuario crearUsuario(UsersDTO dto) {
+        Optional<Usuario> exists = this.repository.findByEmail(dto.getEmail());
+        if (exists != null) {
             throw new RegistroApiException("No se pudo crear el usuario, lo sentimos...");
         }
-      Optional<Roles> rolOptional = rolesRepository.findById(dto.getRol_id());
-        Roles rolesResult = new Roles(rolOptional.get().getId(),rolOptional.get().getDescripcion());
-        Usuario nuevoUsuario = new Usuario(dto.getEmail(), passwordEncoder.encode(dto.getPassword()),rolesResult);
-        nuevoUsuario= this.repository.save(nuevoUsuario);
+        Optional<Roles> rolOptional = rolesRepository.findById(dto.getRol_id());
+        Roles rolesResult = new Roles(rolOptional.get().getId(), rolOptional.get().getDescripcion());
+        Usuario nuevoUsuario = new Usuario(dto.getEmail(), passwordEncoder.encode(dto.getPassword()), rolesResult);
+        nuevoUsuario = this.repository.save(nuevoUsuario);
         return nuevoUsuario;
+    }
+
+    public Usuario buscarUsuarioEmail(String email) {
+        Optional<Usuario> usuarioOptional = repository.findByEmail(email);
+        if (usuarioOptional.isPresent()) {
+            return usuarioOptional.get();
+        } else {
+            throw new RegistroApiException("No se ha encontrado usuarios con ese correo, verifique" + email);
+        }
+
     }
 }
