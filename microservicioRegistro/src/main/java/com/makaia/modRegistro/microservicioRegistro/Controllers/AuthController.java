@@ -3,6 +3,7 @@ package com.makaia.modRegistro.microservicioRegistro.Controllers;
 import com.makaia.modRegistro.microservicioRegistro.Dtos.LoginRequestDto;
 import com.makaia.modRegistro.microservicioRegistro.Entities.Usuario;
 import com.makaia.modRegistro.microservicioRegistro.Security.JwtUtil;
+import com.makaia.modRegistro.microservicioRegistro.Services.UserService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -18,20 +19,21 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class AuthController {
     private  final AuthenticationManager authenticationManager;
     private JwtUtil jwtUtil;
+    private UserService userService;
 
     public AuthController(AuthenticationManager authenticationManager, JwtUtil jwtUtil) {
         this.authenticationManager = authenticationManager;
         this.jwtUtil = jwtUtil;
     }
-   /* @ResponseBody
+    @ResponseBody
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public ResponseBody login(@ResponseBody LoginRequestDto loginReq){
         try {
             Authentication authentication = authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(loginReq.getEmail(), loginReq.getPassword()));
-            SecurityContextHolder.getContext().setAuthentication(authentication);
+            authentication.getName(userService.buscarUsuarioEmail());
 
         }
 
-    */
+
     }

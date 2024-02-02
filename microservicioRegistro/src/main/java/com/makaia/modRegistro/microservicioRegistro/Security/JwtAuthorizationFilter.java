@@ -30,7 +30,8 @@ public class JwtAuthorizationFilter  extends OncePerRequestFilter {
     }
 
     @Override
-    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
+    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
+            throws ServletException, IOException {
         Map<String, Object> errorDetails = new HashMap<>();
         try{
             String accesToken = jwtUtil.resolveToken(request);
@@ -42,9 +43,7 @@ public class JwtAuthorizationFilter  extends OncePerRequestFilter {
             Claims claims = jwtUtil.resolveClaims(request);
             if (claims != null & jwtUtil.validateClaims(claims)){
                 String email = claims.getSubject();
-                String roles = claims.getSubject();
                 System.out.println("email : "+ email);
-                System.out.println("roles: "+ roles);
                 Authentication authentication =
                         new  UsernamePasswordAuthenticationToken(email, "");
                 SecurityContextHolder.getContext().setAuthentication(authentication);
