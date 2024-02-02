@@ -2,6 +2,7 @@ package com.makaia.modRegistro.microservicioRegistro.Services;
 
 import com.makaia.modRegistro.microservicioRegistro.Dtos.AspirantesDTO;
 import com.makaia.modRegistro.microservicioRegistro.Entities.*;
+import com.makaia.modRegistro.microservicioRegistro.Exceptions.RegistroApiException;
 import org.springframework.stereotype.Service;
 import com.makaia.modRegistro.microservicioRegistro.Repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -111,7 +112,7 @@ public class AspiranteService {
         if (aspiranteOptional.isPresent()) {
             return aspiranteOptional.get();
         } else {
-            throw new NoSuchElementException("No se encontró un aspirante con el ID proporcionado: " + aspiranteId);
+            throw new RegistroApiException("No se encontró un aspirante con el ID proporcionado: " + aspiranteId);
         }
     }
 
@@ -121,7 +122,7 @@ public class AspiranteService {
         if (aspiranteOptional.isPresent()) {
             repository.deleteById(aspiranteId);
         } else {
-            throw new NoSuchElementException("No se encontró un aspirante con el ID proporcionado: " + aspiranteId);
+            throw new RegistroApiException("No se encontró un aspirante con el ID proporcionado: " + aspiranteId);
         }
     }
 
