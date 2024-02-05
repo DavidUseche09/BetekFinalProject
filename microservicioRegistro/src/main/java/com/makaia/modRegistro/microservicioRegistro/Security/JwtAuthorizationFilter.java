@@ -1,7 +1,6 @@
 package com.makaia.modRegistro.microservicioRegistro.Security;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.makaia.modRegistro.microservicioRegistro.Entities.Roles;
 import io.jsonwebtoken.Claims;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
