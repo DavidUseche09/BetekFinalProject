@@ -16,6 +16,7 @@ public class JwtUtil {
     private final String secret_key = "mysecretkey";
     private long accessTokenValidity = 60*60*1000;
     private final JwtParser jwtParser;
+    private List <Roles> roles;
 
     private final String TOKEN_HEADER = "Authorization";
     private final String TOKEN_PREFIX = "Bearer ";
@@ -23,7 +24,7 @@ public class JwtUtil {
     public JwtUtil() {
         this.jwtParser = (JwtParser) Jwts.parser().setSigningKey(secret_key);
     }
-    public  String crearToken(Usuario usuario, List<Roles> roles){
+    public  String crearToken(Usuario usuario){
         List<String> rolesName = roles.stream().map(Roles::getDescripcion).toList();
         Claims claims = (Claims) Jwts.claims().setSubject(usuario.getEmail());
         Date tokenCreateTime = new Date();

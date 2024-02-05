@@ -37,22 +37,12 @@ public class SecurityConfiguration {
     public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
         httpSecurity.csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests((authorize)->{
-                    //authorize.requestMatchers("api/v1/aspirante/**").hasRole("Programador");
-                   //authorize.anyRequest().authenticated();
-                   authorize.anyRequest().permitAll();
+                    authorize.requestMatchers("api/v1/aspirante/**").permitAll();
+                    authorize.requestMatchers("api/v1/user/**").permitAll();
+                   authorize.anyRequest().authenticated();
                 });
 
         return httpSecurity.build();
     }
-    // Otra manera de mejorar el codigo
-//    @Bean
-//    public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
-//        httpSecurity.csrf(AbstractHttpConfigurer::disable)
-//                .authorizeHttpRequests((authorize) -> {
-//                    authorize.antMatchers("/recursos-publicos/**").permitAll()
-//                            .antMatchers("/recursos-privados/**").authenticated();
-//                })
-//                .httpBasic(Customizer.withDefaults());
-//        return httpSecurity.build();
-//    }
+
 }
