@@ -34,7 +34,7 @@ public UserDetails loadUserByUsername (String email) throws UsernameNotFoundExce
      rol.add(new Roles(userResult.getRol().getDescripcion()));
     UserDetails userCreate = User.withUsername(userResult.getEmail())
             .password(userResult.getPassword())
-            .roles("ROLE_"+userResult.getRol().getDescripcion())
+            .roles(userResult.getRol().getDescripcion())
             .build();
     System.out.println(userCreate);
     return userCreate;

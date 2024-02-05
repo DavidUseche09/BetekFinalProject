@@ -2,15 +2,16 @@ package com.makaia.modRegistro.microservicioRegistro.Dtos;
 
 import com.makaia.modRegistro.microservicioRegistro.Entities.Roles;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
+
+import java.util.List;
 
 public class UsersDTO {
-    // Agregue estas anotaciones para mejorar el ingreso de datos
+
     @NotBlank
     private String email;
     @NotBlank
     private String password;
-    @NotNull
+
     private Long rol_id;
 
     public UsersDTO() {

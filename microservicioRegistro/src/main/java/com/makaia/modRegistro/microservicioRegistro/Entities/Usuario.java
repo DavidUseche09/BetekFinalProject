@@ -15,6 +15,9 @@ public class Usuario {
     @ManyToOne (optional = false)
     Roles rol;
 
+    public Usuario() {
+    }
+
     public Usuario(String email, String password, Roles rol) {
         if (email == null || password == null || rol == null) {
             throw new IllegalArgumentException("Email, password y rol no pueden ser nulos.");
