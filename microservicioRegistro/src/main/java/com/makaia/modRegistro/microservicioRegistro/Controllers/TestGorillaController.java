@@ -17,12 +17,12 @@ public class TestGorillaController {
     @Autowired
     TestGorillaService testGorillaService;
     @PostMapping("/invitarCandidato/{assessmentId}")
-    public ResponseEntity<InvitationResponse> inviteCandidate(
+    public ResponseEntity<InvitationResponseDTO> inviteCandidate(
             @PathVariable String assessmentId,
-            @RequestBody InvitationRequest invitationRequest) {
+            @RequestBody InvitationRequestDTO invitationRequest) {
 
         try {
-            InvitationResponse response = testGorillaService.inviteCandidate(assessmentId, invitationRequest);
+            InvitationResponseDTO response = testGorillaService.inviteCandidate(assessmentId, invitationRequest);
             return new ResponseEntity<>(response, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);

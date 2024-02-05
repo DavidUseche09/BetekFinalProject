@@ -1,6 +1,6 @@
 package com.makaia.modRegistro.microservicioRegistro.testGorilla;
 
-public class InvitationResponse {
+public class InvitationResponseDTO {
     private Long id;
     private Long assessment;
     private String email;
@@ -11,10 +11,10 @@ public class InvitationResponse {
     private Long testtaker_id;
     private String status;
 
-    public InvitationResponse() {
+    public InvitationResponseDTO() {
     }
 
-    public InvitationResponse(Long id, Long assessment, String email, String first_name, String last_name, String invitation_uuid, String created, Long testtaker_id, String status) {
+    public InvitationResponseDTO(Long id, Long assessment, String email, String first_name, String last_name, String invitation_uuid, String created, Long testtaker_id, String status) {
         this.id = id;
         this.assessment = assessment;
         this.email = email;

@@ -32,19 +32,19 @@ public class TestGorillaService  {
     @Value("-H Authorization: Token YOUR_FAKE_TOKEN")
     private String testGorillaApiToken;
 
-    public InvitationResponse inviteCandidate(String assessmentId, InvitationRequest invitationRequest) {
+    public InvitationResponseDTO inviteCandidate(String assessmentId, InvitationRequestDTO invitationRequest) {
         String url = testGorillaUrl + "/assessments/" + assessmentId + "/invite_candidate/";
         HttpHeaders headers = new HttpHeaders();
         headers.set("Content-Type", "application/json");
         headers.set("Authorization", "Token " + testGorillaApiToken);
 
-        HttpEntity<InvitationRequest> requestEntity = new HttpEntity<>(invitationRequest, headers);
+        HttpEntity<InvitationRequestDTO> requestEntity = new HttpEntity<>(invitationRequest, headers);
 
-        ResponseEntity<InvitationResponse> responseEntity = restTemplate.exchange(
+        ResponseEntity<InvitationResponseDTO> responseEntity = restTemplate.exchange(
                 url,
                 HttpMethod.POST,
                 requestEntity,
-                InvitationResponse.class
+                InvitationResponseDTO.class
         );
         return responseEntity.getBody();
     }

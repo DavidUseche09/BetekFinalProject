@@ -38,6 +38,7 @@ public class SecurityConfiguration {
                 .authorizeHttpRequests((authorize)->{
                     authorize.requestMatchers("api/v1/aspirante/**").permitAll();
                     authorize.requestMatchers("api/v1/user/**").permitAll();
+                    authorize.requestMatchers("api/v1/auth/**").permitAll();
                    authorize.anyRequest().authenticated();
                 });
 

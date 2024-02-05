@@ -7,6 +7,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Component;
 
 import javax.naming.AuthenticationException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -23,6 +24,7 @@ public class JwtUtil {
 
     public JwtUtil() {
         this.jwtParser = (JwtParser) Jwts.parser().setSigningKey(secret_key);
+        this.roles = new ArrayList<>();
     }
     public  String crearToken(Usuario usuario){
         List<String> rolesName = roles.stream().map(Roles::getDescripcion).toList();
@@ -31,7 +33,7 @@ public class JwtUtil {
         Date tokenValidity = new Date(tokenCreateTime.getTime()+ TimeUnit.MINUTES.toMillis(accessTokenValidity));
         return Jwts.builder()
                 .setClaims(claims)
-                .claim("roles", rolesName)
+                .claim(roles.toString(), rolesName)
                 .setExpiration(tokenValidity)
                 .signWith(SignatureAlgorithm.HS256, secret_key)
                 .compact();
@@ -71,8 +73,6 @@ public class JwtUtil {
     public  String getEmail (Claims claims){
         return claims.getSubject();
     }
-    public static  List<String> getRoles (Claims claims){
-        return (List<String>) claims.get("roles");
-    }
+
 
 }
