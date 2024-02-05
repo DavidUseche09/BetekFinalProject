@@ -52,9 +52,68 @@ Se utiliza este patrón para transferencia de datos entre diferentes capas de la
 - Organizacion: como se entero del Bootcamp el aspirante (cadena de texto)
   
 Ejemplo de la solicitud:
-```java 
+```java
 {
-"Nombre": String,
-"NumeroDocumento": Long,
+ "entrenamiento": Id,
+    "nombre": String,
+    "tipo_doc": Id,
+    "numero_documento": numero;
+    "genero": Id,
+    "edad": numero,
+    "fecha_nacimiento": Date,
+    "celular": numero,
+    "email": String,
+    "nacionalidad": String,
+    "departamento": String,
+    "ciudad": String,
+    "direccion": String,
+    "estrato": Id,
+    "grupo_etnico_id": Id,
+    "discapacidad_id": Id,
+    "poblacion_id_id": Id,
+    "nivel_educacion_id": Id,
+    "ocupacion_id": Id,
+    "ultimo_titulo": String,
+    "ocupacion_si": Opcional,
+    "salario_actual_id": Id,
+    "tiempo_libre": String,
+    "persona_emergencia": String,
+    "contacto_emergencia": numero,
+    "email_emergencia": String,
+    "bootcamp_info_id": Id,
+    "organizacion": Opcional
+}
+```
+La API devolverá el nuevo cliente creado en formato JSON:
+```java
+{
+ "entrenamiento": 1,
+    "nombre": "Fabian",
+    "tipo_doc": 1,
+    "numero_documento":1234,
+    "genero": 2,
+    "edad": 24,
+    "fecha_nacimiento": "1999-06-09",
+    "celular": 321,
+    "email": "ex@example.com",
+    "nacionalidad": "Colombia",
+    "departamento": "Boyacá",
+    "ciudad": "Cucaita",
+    "direccion":"cll 7",
+    "estrato": 1,
+    "grupo_etnico_id":1,
+    "discapacidad_id":1,
+    "poblacion_id_id":6,
+    "nivel_educacion_id":5,
+    "ocupacion_id":1,
+    "ultimo_titulo":"Tec",
+    "ocupacion_si":"",
+    "salario_actual_id":1,
+    "tiempo_libre":"Estudiando",
+    "persona_emergencia":"Edisson",
+    "contacto_emergencia":311,
+    "email_emergencia":"ex@example.com",
+    "bootcamp_info_id":3,
+    "organizacion":""
 }
 ```
