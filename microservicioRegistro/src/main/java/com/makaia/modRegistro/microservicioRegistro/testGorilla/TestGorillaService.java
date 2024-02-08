@@ -90,4 +90,24 @@ public class TestGorillaService  {
             return Collections.emptyList();
         }
     }
+
+    public RestTemplate getRestTemplate() {
+        return restTemplate;
+    }
+
+    public String getTestGorillaUrl() {
+        return testGorillaUrl;
+    }
+
+    public void setTestGorillaUrl(String testGorillaUrl) {
+        this.testGorillaUrl = testGorillaUrl;
+    }
+
+    public String getTestGorillaApiToken() {
+        return testGorillaApiToken;
+    }
+
+    public void setTestGorillaApiToken(String testGorillaApiToken) {
+        this.testGorillaApiToken = testGorillaApiToken;
+    }
 }
