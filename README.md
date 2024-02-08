@@ -117,3 +117,77 @@ La API devolverá el nuevo cliente creado en formato JSON:
     "organizacion":""
 }
 ```
+## Endpoint de creación de usuario:
+### POST: /api1/v1/user
+🙍 **Crear** un nuevo usuario en la base de datos con la información proporcionada en el cuerpo de la solicitud.
+Ejemplo de la solicitud:
+```java
+{
+ "email": String,
+ "password": String
+}
+```
+La API devolverá el nuevo usuario creado en formato JSON:
+```java
+{
+ "email": "example@gmail.com",
+ "password": "1234"
+}
+```
+
+## Endpoint de creación de test usando API TestGorilla:
+### POST: api/v1/testGorilla/invitarCandidato/{assessmentId}
+🙍 **Crear** un usuario creado del formulario recibira una invitacion a su correo llenando la informacion requerida:
+Ejemplo de la solicitud:
+```java
+{
+ "email": String,
+ "first_name": String,
+ "last_name": String
+}
+```
+La API devolverá el usuario invitado al test creado en formato JSON:
+```java
+{
+ "email": "example@gmail.com",
+ "first_name": "David",
+ "last_name": "Rosas"
+}
+```
+### GET: api/v1/testGorilla/pruebas/{assessmentId}/candidatosInvitados
+🙍 **Recibir** usuarios invitados segun la prueba y el test usado:
+Ejemplo de la solicitud:
+```java
+{
+ "assessmentId": Long
+}
+```
+La API devolverá los usuarios invitados en formato JSON:
+```java
+{
+ "assessmentId": 1
+}
+```
+### GET: api/v1/testGorilla/pruebas/{assessmentId}/resultadosPruebas/{testTakerId}
+🙍 **Recibir** resultados de los usuarios segun la prueba y el test usado:
+Ejemplo de la solicitud:
+```java
+{
+ "assessmentId": Long,
+ "testTaker": Long
+}
+```
+La API devolverá el resultado de la siguiente manera creado en formato JSON:
+```java
+{
+    "test_id": 1,
+    "name": "David",
+    "score": 100,
+    "status": "Published",
+    completed: true,
+    "custom_questions": "Nothing",
+    "algorithm": "big_5",
+    is_code_test: false,
+    "score_display": "2-1-1-2-1_32.0-34.0-33.0-35.0-32.0"
+}
+```
