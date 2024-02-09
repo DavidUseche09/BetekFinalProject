@@ -8,14 +8,14 @@ import org.springframework.stereotype.Component;
 
 @Component
 @EnableRabbit
-public class Publisher {
+public class PublisherAspirantes {
     @Autowired
     private RabbitTemplate rabbitTemplate;
     @Autowired
-    private Queue queue;
+    private QueueAspirantes queueAspirantes;
 
     public void send(Long id){
-        this.rabbitTemplate.convertAndSend(queue.getName(), id);
+        this.rabbitTemplate.convertAndSend(queueAspirantes.getName(), id);
     }
 
 }

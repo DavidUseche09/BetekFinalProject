@@ -2,6 +2,7 @@ package com.makaia.modRegistro.microservicioRegistro.Services;
 
 import com.makaia.modRegistro.microservicioRegistro.Dtos.AspirantesDTO;
 import com.makaia.modRegistro.microservicioRegistro.Entities.*;
+import com.makaia.modRegistro.microservicioRegistro.Publisher.PublisherAspirantes;
 import org.springframework.stereotype.Service;
 import com.makaia.modRegistro.microservicioRegistro.Repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,8 +27,9 @@ public class AspiranteService {
     Salario_ActualRepository salarioActualRepository;
     Tipo_DocRepository tipoDocRepository;
     ResultadosTestGorillaRepository testGorillaRepository;
-@Autowired
-    public AspiranteService(AspiranteRepository repository, Bootcamp_InfoRepository bootcampInfoRepository, DiscapacidadRepository discapacidadRepository, EntrenamientoRepository entrenamientoRepository, EstratoRepository estratoRepository, GeneroRepository generoRepository, GrupoEtnicoRepository grupoEtnicoRepository, Nivel_EducacionRepository nivelEducacionRepository, OcupacionRepository ocupacionRepository, PoblacionIdentificacionRepository poblacionIdentificacionRepository, Salario_ActualRepository salarioActualRepository, Tipo_DocRepository tipoDocRepository, ResultadosTestGorillaRepository testGorillaRepository) {
+    PublisherAspirantes publisher;
+    @Autowired
+    public AspiranteService(AspiranteRepository repository, Bootcamp_InfoRepository bootcampInfoRepository, DiscapacidadRepository discapacidadRepository, EntrenamientoRepository entrenamientoRepository, EstratoRepository estratoRepository, GeneroRepository generoRepository, GrupoEtnicoRepository grupoEtnicoRepository, Nivel_EducacionRepository nivelEducacionRepository, OcupacionRepository ocupacionRepository, PoblacionIdentificacionRepository poblacionIdentificacionRepository, Salario_ActualRepository salarioActualRepository, Tipo_DocRepository tipoDocRepository, ResultadosTestGorillaRepository testGorillaRepository, PublisherAspirantes publisher) {
         this.repository = repository;
         this.bootcampInfoRepository = bootcampInfoRepository;
         this.discapacidadRepository = discapacidadRepository;
@@ -41,10 +43,8 @@ public class AspiranteService {
         this.salarioActualRepository = salarioActualRepository;
         this.tipoDocRepository = tipoDocRepository;
         this.testGorillaRepository = testGorillaRepository;
+        this.publisher = publisher;
     }
-
-
-
     public Aspirante crearAspirante(AspirantesDTO dto) {
         Optional<Bootcamp_Info> botcampOptional = bootcampInfoRepository.findById(dto.getBootcamp_info_id());
         Bootcamp_Info bootcampInfoResult = new Bootcamp_Info(botcampOptional.get().getId(),botcampOptional.get().getDescripcion());
@@ -104,6 +104,9 @@ public class AspiranteService {
         newAspirante = this.repository.save(newAspirante);
         return newAspirante;
 
+    }
+    private void crearAspiranteCola(Long aspirante){
+        this.publisher.send(aspirante);
     }
 
     public Aspirante obtenerAspirantePorId(Long aspiranteId) {
