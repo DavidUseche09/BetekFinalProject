@@ -7,11 +7,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
+
 @EnableRabbit
 public class PublisherAspirantes {
     @Autowired
     private RabbitTemplate rabbitTemplate;
-    @Autowired
+
     private QueueAspirantes queueAspirantes;
 
     public void send(Long id){
