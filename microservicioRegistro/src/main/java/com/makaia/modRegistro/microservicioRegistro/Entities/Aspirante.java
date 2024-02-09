@@ -8,12 +8,6 @@ import java.util.Date;
 @Table (name= "Aspirante")
 public class Aspirante {
 
-    // Preguntas pa tomorrow
-    // Agregar testTakerId (Preguntar profe) (Hecho)
-    // Preguntar donde se guardaran esos resultados (Base de datos o una cola)
-    // Rabbit e implementacion de los otros modulos
-    // Preguntar rol de programador en CustomDetailService
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected Long id;

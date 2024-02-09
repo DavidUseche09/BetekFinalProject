@@ -2,10 +2,8 @@ package com.makaia.modRegistro.microservicioRegistro.Security;
 
 import com.makaia.modRegistro.microservicioRegistro.Entities.Roles;
 import com.makaia.modRegistro.microservicioRegistro.Entities.Usuario;
-import com.makaia.modRegistro.microservicioRegistro.Repositories.RolesRepository;
 import com.makaia.modRegistro.microservicioRegistro.Repositories.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -38,7 +36,6 @@ public UserDetails loadUserByUsername (String email) throws UsernameNotFoundExce
             .build();
     System.out.println(userCreate);
     return userCreate;
-
 
 }
     public PasswordEncoder passwordEncoder(){
