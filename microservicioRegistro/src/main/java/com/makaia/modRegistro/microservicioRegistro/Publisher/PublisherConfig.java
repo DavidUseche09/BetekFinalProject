@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class PublisherConfig {
-    @Value("${microservicioRegistro.rabbit.queue.resultados}")
+    @Value("${microservicioRegistro.rabbit.queue.aspirantes}")
     private  String name;
 
     @Bean
