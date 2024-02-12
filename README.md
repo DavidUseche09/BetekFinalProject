@@ -2,6 +2,28 @@
 # API REST MICROSERVICIO FORMULARIO
 Esta aplicación fue diseñada en el marco del proyecto integrador del Bootcamp de backend de Makaia como resultado de la implementación de los conocimientos adquiridos en la formación académica.
 
+## Ejecutando las pruebas ⚙️
+
+_Para ejecutar pruebas se usan las siguientes herramientas_
+
+* [Postman](https://www.postman.com) - Pruebas API
+* [jUnit](https://junit.org/junit5/) - El framework para pruebas Unitarias
+
+## Construido con 🛠️
+
+_Las siguientes herramientas fueron implementadas dentro de este módulo:
+
+* [Java](https://www.java.com/es/) - Lenguaje de Programación
+* [Spring](https://spring.io/) - El framework web usado
+* [Maven](https://maven.apache.org/) - Manejador de dependencias
+* [MySQL](https://www.mysql.com/) - Usado como Base de datos Relacional
+
+
+## Autores ✒️
+
+* **Fabian Largo Sierra** - [flsierra](https://github.com/flsierra)
+* **David Useche Rosas** - [DavidUseche09](https://github.com/DavidUseche09)
+  
 Esta API REST Formulario es una aplicación Spring Boot que permite a los aspirantes interesados en el Bootcamp registrarse llenando campos necesarios de un formulario para postulaciones de formacion tecnologicas.
 Para diseñar estas solución se emplearon las siguientes tecnologías:
 # Tecnologias implementadas
