@@ -2,8 +2,12 @@
 # API REST MICROSERVICIO FORMULARIO
 Esta aplicación fue diseñada en el marco del proyecto integrador del Bootcamp de backend de Makaia como resultado de la implementación de los conocimientos adquiridos en la formación académica.
 
-## Ejecutando las pruebas ⚙️
+## Diagrama de procesos API
+Aqui se muestra en la imagen el funcionamiento de procesos que se espera completar del programa
 
+![UML](https://github.com/DavidUseche09/MakaiaFinalProject/blob/davidBranch/Diagramas/Diagrama%20Procesos.png)
+
+## Ejecutando las pruebas ⚙️
 _Para ejecutar pruebas se usan las siguientes herramientas_
 
 * [Postman](https://www.postman.com) - Pruebas API
