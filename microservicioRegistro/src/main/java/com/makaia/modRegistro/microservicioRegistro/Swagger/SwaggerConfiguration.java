@@ -24,7 +24,10 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @OpenAPIDefinition(
         info = @Info(
                 title = "Microservicio Registro API"
-                ),
+        ,description = "Esta aplicación fue diseñada en el marco del proyecto integrador del" +
+                " Bootcamp de backend de Makaia como resultado de la implementación de los conocimientos adquiridos en la formación académica.")
+
+        ,
         servers = {
                 @Server(url = "htpp://prueba/", description = "Servidor de produccion"),
                 @Server(url = "htpp://localhost:8081/api/v1/", description = "Servidor local")
