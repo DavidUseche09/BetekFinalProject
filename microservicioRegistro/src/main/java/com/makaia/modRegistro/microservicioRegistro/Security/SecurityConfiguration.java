@@ -12,6 +12,11 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+
+import java.util.List;
 
 @Configuration
 @EnableWebSecurity
@@ -41,8 +46,9 @@ public class SecurityConfiguration {
                     authorize.requestMatchers("api/v1/aspirante/**").hasRole("Reclutador");
                     authorize.requestMatchers("api/v1/user/**").permitAll();
                     authorize.requestMatchers("api/v1/auth/**").permitAll();
-                    //authorize.anyRequest().authenticated();
-                    authorize.anyRequest().permitAll();
+                    authorize.requestMatchers("/swagger-ui/index.html").permitAll();
+                   authorize.anyRequest().authenticated();
+                  // authorize.anyRequest().permitAll();
                 });
 
         http.sessionManagement(sessionAuthenticationStrategy ->
