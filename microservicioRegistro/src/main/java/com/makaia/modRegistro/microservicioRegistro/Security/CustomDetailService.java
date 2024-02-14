@@ -23,16 +23,16 @@ public class CustomDetailService implements UserDetailsService {
 
 @Override
 public UserDetails loadUserByUsername (String email) throws UsernameNotFoundException{
-    Optional<Usuario> user = this.usuarioRepository.findByEmail(email);
-    Usuario userResult = new Usuario(user.get().getEmail(),user.get().getPassword(),user.get().getRol());
+    Usuario user = this.usuarioRepository.findByEmail(email);
+
     if(user== null){
         throw new UsernameNotFoundException(email);
     }
     List<Roles> rol = new ArrayList<>();
-     rol.add(new Roles(userResult.getRol().getDescripcion()));
-    UserDetails userCreate = User.withUsername(userResult.getEmail())
-            .password(userResult.getPassword())
-            .roles(userResult.getRol().getDescripcion())
+     rol.add(new Roles(user.getRol().getDescripcion()));
+    UserDetails userCreate = User.withUsername(user.getEmail())
+            .password(user.getPassword())
+            .roles(user.getRol().getDescripcion())
             .build();
     System.out.println(userCreate);
     return userCreate;

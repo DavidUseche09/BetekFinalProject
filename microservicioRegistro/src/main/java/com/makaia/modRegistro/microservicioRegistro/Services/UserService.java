@@ -26,7 +26,7 @@ public class UserService {
     }
 
     public Usuario crearUsuario(UsersDTO dto) {
-        Optional<Usuario> exists = this.repository.findByEmail(dto.getEmail());
+       Usuario exists = (this.repository.findByEmail(dto.getEmail()));
         if (exists != null) {
             throw new RegistroApiException("No se pudo crear el usuario, lo sentimos...");
         }
@@ -38,7 +38,7 @@ public class UserService {
     }
 
     public Usuario buscarUsuarioEmail(String email) {
-        Optional<Usuario> usuarioOptional = repository.findByEmail(email);
+        Optional<Usuario> usuarioOptional = Optional.ofNullable(repository.findByEmail(email));
         if (usuarioOptional.isPresent()) {
             return usuarioOptional.get();
         } else {
