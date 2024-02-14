@@ -26,8 +26,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
                 title = "Microservicio Registro API"
                 ),
         servers = {
-                @Server(url = "htpp://prueba/", description = "Servidor de produccion"),
-                @Server(url = "htpp://localhost:8081/api/v1/", description = "Servidor local")
+                @Server(url = "http://localhost:8081/", description = "Servidor local")
                 }
 )
 public class SwaggerConfiguration {
