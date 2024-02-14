@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 
 @RestController
 @RequestMapping("api/v1/aspirante")
@@ -22,6 +24,15 @@ public class AspiranteController {
     public Aspirante crearAspirante(@RequestBody AspirantesDTO dto) {
         return this.service.crearAspirante(dto);
     }
+    @GetMapping("listAspirant")
+    public List<Aspirante> listaAspirante(){
+        return service.obtenerTodosLosAspirantes();
+    }
+    @DeleteMapping("/{id}")
+    public void eliminaAspirante(@PathVariable("id") Long id){
+        this.service.eliminarAspirantePorId(id);
+    }
+
 }
 
 

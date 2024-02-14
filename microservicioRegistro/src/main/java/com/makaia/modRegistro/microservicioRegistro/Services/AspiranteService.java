@@ -26,10 +26,10 @@ public class AspiranteService {
     PoblacionIdentificacionRepository poblacionIdentificacionRepository;
     Salario_ActualRepository salarioActualRepository;
     Tipo_DocRepository tipoDocRepository;
-    ResultadosTestGorillaRepository testGorillaRepository;
+
     PublisherAspirantes publisher;
     @Autowired
-    public AspiranteService(AspiranteRepository repository, Bootcamp_InfoRepository bootcampInfoRepository, DiscapacidadRepository discapacidadRepository, EntrenamientoRepository entrenamientoRepository, EstratoRepository estratoRepository, GeneroRepository generoRepository, GrupoEtnicoRepository grupoEtnicoRepository, Nivel_EducacionRepository nivelEducacionRepository, OcupacionRepository ocupacionRepository, PoblacionIdentificacionRepository poblacionIdentificacionRepository, Salario_ActualRepository salarioActualRepository, Tipo_DocRepository tipoDocRepository, ResultadosTestGorillaRepository testGorillaRepository, PublisherAspirantes publisher) {
+    public AspiranteService(AspiranteRepository repository, Bootcamp_InfoRepository bootcampInfoRepository, DiscapacidadRepository discapacidadRepository, EntrenamientoRepository entrenamientoRepository, EstratoRepository estratoRepository, GeneroRepository generoRepository, GrupoEtnicoRepository grupoEtnicoRepository, Nivel_EducacionRepository nivelEducacionRepository, OcupacionRepository ocupacionRepository, PoblacionIdentificacionRepository poblacionIdentificacionRepository, Salario_ActualRepository salarioActualRepository, Tipo_DocRepository tipoDocRepository, PublisherAspirantes publisher) {
         this.repository = repository;
         this.bootcampInfoRepository = bootcampInfoRepository;
         this.discapacidadRepository = discapacidadRepository;
@@ -41,8 +41,7 @@ public class AspiranteService {
         this.ocupacionRepository = ocupacionRepository;
         this.poblacionIdentificacionRepository = poblacionIdentificacionRepository;
         this.salarioActualRepository = salarioActualRepository;
-        this.tipoDocRepository = tipoDocRepository;
-        this.testGorillaRepository = testGorillaRepository;
+        this.tipoDocRepository = tipoDocRepository;;
         this.publisher = publisher;
     }
     public Aspirante crearAspirante(AspirantesDTO dto) {
@@ -68,8 +67,6 @@ public class AspiranteService {
         Salario_Actual salarioActualResult = new Salario_Actual(salarioActualOptional.get().getId(),salarioActualOptional.get().getRango_Salarial());
         Optional <Tipo_Doc> tipo_docOptional = tipoDocRepository.findById(dto.getTipo_doc());
         Tipo_Doc tipodocResult = new Tipo_Doc(tipo_docOptional.get().getId(),tipo_docOptional.get().getDescripcion());
-        Optional<ResultadosTestGorilla> resultadosTestGorillaOptional = testGorillaRepository.findById(dto.getResultadosTestGorillaId());
-        ResultadosTestGorilla testGorillares = new ResultadosTestGorilla(resultadosTestGorillaOptional.get().getTest_id(),resultadosTestGorillaOptional.get().getName(),resultadosTestGorillaOptional.get().getScore(),resultadosTestGorillaOptional.get().getStatus(),resultadosTestGorillaOptional.get().getCompleted(),resultadosTestGorillaOptional.get().getCustom_questions(),resultadosTestGorillaOptional.get().getAlgorithm(),resultadosTestGorillaOptional.get().getIs_code_test(),resultadosTestGorillaOptional.get().getScore_display());
         Aspirante newAspirante = new Aspirante(
                 dto.getNombre(),
                 dto.getNumero_documento(),
@@ -98,8 +95,7 @@ public class AspiranteService {
                 salarioActualResult,
                 bootcampInfoResult,
                 entrenamientoResult,
-                estratoResult,
-                testGorillares
+                estratoResult
                 );
         newAspirante = this.repository.save(newAspirante);
         return newAspirante;
