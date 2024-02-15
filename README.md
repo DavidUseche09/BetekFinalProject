@@ -20,7 +20,7 @@ _Las siguientes herramientas fueron implementadas dentro de este módulo:
 * [Java](https://www.java.com/es/) - Lenguaje de Programación
 * [Spring](https://spring.io/) - El framework web usado
 * [Maven](https://maven.apache.org/) - Manejador de dependencias
-* [MySQL](https://www.mysql.com/) - Usado como Base de datos Relacional
+* [MySQL](https://www.mysql.com/) - Motor de Base de datos Relacional
 
 
 ## Autores ✒️
@@ -39,9 +39,10 @@ Para diseñar estas solución se emplearon las siguientes tecnologías:
 # Las principales dependencias utilizadas son : 👩‍💻
 - Spring Data JPA (Persiste bases de datos SQL utilizando Java Persistence API mediante Spring Data)
 - Spring Web (Construye aplicaciones web, incluyendo RESTful, utilizando Spring MVC. Utiliza Apache Tomcat como contenedor integrado predeterminado.)
-- Spring Security (Autenticación básica)
+- Spring Security (Json Web Token)
 - JUnit (Testeo de pruebas unitarias)
 - Swagger (Documentación de la API)
+- Rabbit MQ (Colas para enviar aspirantes y resultados al siguiente modulo)
 
 ## :computer: UML Modelo:
 ![UML](https://github.com/DavidUseche09/MakaiaFinalProject/blob/main/Diagramas/MakaiaFinalProjectDiagramClass.drawio.png)
