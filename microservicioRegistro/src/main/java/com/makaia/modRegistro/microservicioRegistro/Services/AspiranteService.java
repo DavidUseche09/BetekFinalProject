@@ -7,9 +7,7 @@ import com.makaia.modRegistro.microservicioRegistro.Exceptions.RegistroApiExcept
 import org.springframework.stereotype.Service;
 import com.makaia.modRegistro.microservicioRegistro.Repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 import java.util.List;
-import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @Service

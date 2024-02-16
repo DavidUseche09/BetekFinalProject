@@ -3,6 +3,7 @@ package com.makaia.modRegistro.microservicioRegistro.Security;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -12,11 +13,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import org.springframework.web.cors.CorsConfiguration;
-import org.springframework.web.cors.CorsConfigurationSource;
-import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
-import java.util.List;
 
 @Configuration
 @EnableWebSecurity
@@ -42,19 +39,23 @@ public class SecurityConfiguration {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.csrf(AbstractHttpConfigurer::disable)
-                .authorizeHttpRequests((authorize)->{
-                    authorize.requestMatchers("api/v1/aspirante/**").permitAll();
+                .cors(Customizer.withDefaults())
+                .authorizeRequests(authorize -> {
                     authorize.requestMatchers("api/v1/user/**").permitAll();
                     authorize.requestMatchers("api/v1/auth/**").permitAll();
-                    authorize.requestMatchers("/swagger-ui/**").permitAll();
-                    authorize.requestMatchers("v3/api-docs/**").permitAll();
-                    authorize.anyRequest().permitAll();
-                });
+                    authorize.requestMatchers("api/v1/aspirante/**").permitAll();
+                  
+                })
+                .httpBasic(Customizer.withDefaults())
+                .sessionManagement(sessionAuthenticationStrategy ->
+                        sessionAuthenticationStrategy.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                .addFilterBefore(jwtAuthorizationFilter, UsernamePasswordAuthenticationFilter.class)
+                .authorizeRequests(authorize ->
+                        authorize.requestMatchers( "/swagger-ui/**", "/swagger-ui.html").permitAll()
+                );
 
-        http.sessionManagement(sessionAuthenticationStrategy ->
-                sessionAuthenticationStrategy.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
-        http.addFilterBefore(jwtAuthorizationFilter, UsernamePasswordAuthenticationFilter.class);
         return http.build();
     }
+
 
 }

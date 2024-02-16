@@ -44,6 +44,5 @@ public class UserService {
         } else {
             throw new RegistroApiException("No se ha encontrado usuarios con ese correo, verifique" + email);
         }
-
     }
 }

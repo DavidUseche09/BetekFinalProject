@@ -30,7 +30,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
         ,
         servers = {
-
+        		@Server(url="http://microservicioregistrobetek-env.eba-ibstm6u8.us-east-2.elasticbeanstalk.com/",description="Servidor de Producción"),
                 @Server(url = "http://localhost:8081/", description = "Servidor local")
                 }
 )
