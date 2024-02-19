@@ -44,8 +44,6 @@ public class SecurityConfiguration {
                     authorize.requestMatchers("api/v1/user/**").authenticated();
                     authorize.requestMatchers("api/v1/auth/**").permitAll();
                     authorize.requestMatchers("api/v1/aspirante/**").authenticated();
-
-                  
                 })
                 .httpBasic(Customizer.withDefaults())
                 .sessionManagement(sessionAuthenticationStrategy ->
@@ -57,6 +55,4 @@ public class SecurityConfiguration {
 
         return http.build();
     }
-
-
 }
