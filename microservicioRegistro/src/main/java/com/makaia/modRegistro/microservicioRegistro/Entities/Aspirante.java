@@ -6,7 +6,8 @@ import java.util.Date;
 
 @Entity
 @Table (name= "Aspirante")
-public class    Aspirante {
+public class Aspirante {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected Long id;
@@ -67,6 +68,10 @@ public class    Aspirante {
     @ManyToOne (optional = false)
     Estrato estrato;
 
+
+
+    public Aspirante() {
+    }
     public Aspirante(String nombre, Long numeroDocumento, Long edad, Date fechaNacimiento, Long celular, String email, String nacionalidad, String departamento, String ciudad, String direccion, String ultimoTitulo, String ocupacionSi, String tiempoLibre, String personaEmergencia, Long contactoEmergencia, String emailEmergencia, String organizacion, Tipo_Doc tipo_doc, Genero genero, GrupoEtnico grupo_etnico, Discapacidad discapacidad, PoblacionIdentificacion poblacion_Id, Nivel_Educacion nivel_educacion, Ocupacion ocupacion, Salario_Actual salario_actual, Bootcamp_Info bootcamp_info, Entrenamiento entrenamiento, Estrato estrato) {
         Nombre = nombre;
         NumeroDocumento = numeroDocumento;
@@ -96,6 +101,7 @@ public class    Aspirante {
         this.bootcamp_info = bootcamp_info;
         this.entrenamiento = entrenamiento;
         this.estrato = estrato;
+
     }
 
     public Long getId() {
@@ -105,6 +111,7 @@ public class    Aspirante {
     public void setId(Long id) {
         this.id = id;
     }
+
 
     public String getNombre() {
         return Nombre;
@@ -325,8 +332,9 @@ public class    Aspirante {
     public Estrato getEstrato() {
         return estrato;
     }
-
     public void setEstrato(Estrato estrato) {
         this.estrato = estrato;
     }
+
+
 }

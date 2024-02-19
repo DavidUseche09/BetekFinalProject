@@ -2,11 +2,12 @@ package com.makaia.modRegistro.microservicioRegistro.Services;
 
 import com.makaia.modRegistro.microservicioRegistro.Dtos.AspirantesDTO;
 import com.makaia.modRegistro.microservicioRegistro.Entities.*;
+import com.makaia.modRegistro.microservicioRegistro.Publisher.PublisherAspirantes;
+import com.makaia.modRegistro.microservicioRegistro.Exceptions.RegistroApiException;
 import org.springframework.stereotype.Service;
 import com.makaia.modRegistro.microservicioRegistro.Repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -24,8 +25,9 @@ public class AspiranteService {
     Salario_ActualRepository salarioActualRepository;
     Tipo_DocRepository tipoDocRepository;
 
+    PublisherAspirantes publisher;
     @Autowired
-    public AspiranteService(AspiranteRepository repository, Bootcamp_InfoRepository bootcampInfoRepository, DiscapacidadRepository discapacidadRepository, EntrenamientoRepository entrenamientoRepository, EstratoRepository estratoRepository, GeneroRepository generoRepository, GrupoEtnicoRepository grupoEtnicoRepository, Nivel_EducacionRepository nivelEducacionRepository, OcupacionRepository ocupacionRepository, PoblacionIdentificacionRepository poblacionIdentificacionRepository, Salario_ActualRepository salarioActualRepository, Tipo_DocRepository tipoDocRepository) {
+    public AspiranteService(AspiranteRepository repository, Bootcamp_InfoRepository bootcampInfoRepository, DiscapacidadRepository discapacidadRepository, EntrenamientoRepository entrenamientoRepository, EstratoRepository estratoRepository, GeneroRepository generoRepository, GrupoEtnicoRepository grupoEtnicoRepository, Nivel_EducacionRepository nivelEducacionRepository, OcupacionRepository ocupacionRepository, PoblacionIdentificacionRepository poblacionIdentificacionRepository, Salario_ActualRepository salarioActualRepository, Tipo_DocRepository tipoDocRepository, PublisherAspirantes publisher) {
         this.repository = repository;
         this.bootcampInfoRepository = bootcampInfoRepository;
         this.discapacidadRepository = discapacidadRepository;
@@ -37,7 +39,8 @@ public class AspiranteService {
         this.ocupacionRepository = ocupacionRepository;
         this.poblacionIdentificacionRepository = poblacionIdentificacionRepository;
         this.salarioActualRepository = salarioActualRepository;
-        this.tipoDocRepository = tipoDocRepository;
+        this.tipoDocRepository = tipoDocRepository;;
+        this.publisher = publisher;
     }
     public Aspirante crearAspirante(AspirantesDTO dto) {
         Optional<Bootcamp_Info> botcampOptional = bootcampInfoRepository.findById(dto.getBootcamp_info_id());
@@ -94,5 +97,32 @@ public class AspiranteService {
                 );
         newAspirante = this.repository.save(newAspirante);
         return newAspirante;
+
+    }
+    private void crearAspiranteCola(Long aspirante){
+        this.publisher.send(aspirante);
+    }
+
+    public Aspirante obtenerAspirantePorId(Long aspiranteId) {
+        Optional<Aspirante> aspiranteOptional = repository.findById(aspiranteId);
+        if (aspiranteOptional.isPresent()) {
+            return aspiranteOptional.get();
+        } else {
+            throw new RegistroApiException("No se encontró un aspirante con el ID proporcionado: " + aspiranteId);
+        }
+    }
+
+    public void eliminarAspirantePorId(Long aspiranteId) {
+        Optional<Aspirante> aspiranteOptional = repository.findById(aspiranteId);
+
+        if (aspiranteOptional.isPresent()) {
+            repository.deleteById(aspiranteId);
+        } else {
+            throw new RegistroApiException("No se encontró un aspirante con el ID proporcionado: " + aspiranteId);
+        }
+    }
+
+    public List<Aspirante> obtenerTodosLosAspirantes() {
+        return repository.findAll();
     }
 }
