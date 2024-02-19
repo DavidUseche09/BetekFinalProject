@@ -28,8 +28,7 @@ public class ResultadosTestGorilla {
     @Column(length = 150)
     private String score_display;
 
-    @OneToMany(mappedBy = "resultadosTestGorilla")
-    List<Aspirante> aspirantes;
+
 
     public ResultadosTestGorilla() {
     }

@@ -67,13 +67,12 @@ public class Aspirante {
     Entrenamiento entrenamiento;
     @ManyToOne (optional = false)
     Estrato estrato;
-    @ManyToOne ()
-    ResultadosTestGorilla resultadosTestGorilla;
+
 
 
     public Aspirante() {
     }
-    public Aspirante(String nombre, Long numeroDocumento, Long edad, Date fechaNacimiento, Long celular, String email, String nacionalidad, String departamento, String ciudad, String direccion, String ultimoTitulo, String ocupacionSi, String tiempoLibre, String personaEmergencia, Long contactoEmergencia, String emailEmergencia, String organizacion, Tipo_Doc tipo_doc, Genero genero, GrupoEtnico grupo_etnico, Discapacidad discapacidad, PoblacionIdentificacion poblacion_Id, Nivel_Educacion nivel_educacion, Ocupacion ocupacion, Salario_Actual salario_actual, Bootcamp_Info bootcamp_info, Entrenamiento entrenamiento, Estrato estrato, ResultadosTestGorilla resultadosTestGorilla) {
+    public Aspirante(String nombre, Long numeroDocumento, Long edad, Date fechaNacimiento, Long celular, String email, String nacionalidad, String departamento, String ciudad, String direccion, String ultimoTitulo, String ocupacionSi, String tiempoLibre, String personaEmergencia, Long contactoEmergencia, String emailEmergencia, String organizacion, Tipo_Doc tipo_doc, Genero genero, GrupoEtnico grupo_etnico, Discapacidad discapacidad, PoblacionIdentificacion poblacion_Id, Nivel_Educacion nivel_educacion, Ocupacion ocupacion, Salario_Actual salario_actual, Bootcamp_Info bootcamp_info, Entrenamiento entrenamiento, Estrato estrato) {
         Nombre = nombre;
         NumeroDocumento = numeroDocumento;
         Edad = edad;
@@ -102,7 +101,7 @@ public class Aspirante {
         this.bootcamp_info = bootcamp_info;
         this.entrenamiento = entrenamiento;
         this.estrato = estrato;
-        this.resultadosTestGorilla = resultadosTestGorilla;
+
     }
 
     public Long getId() {
@@ -337,10 +336,5 @@ public class Aspirante {
         this.estrato = estrato;
     }
 
-    public ResultadosTestGorilla getResultadosTestGorilla() {
-        return resultadosTestGorilla;
-    }
-    public void setResultadosTestGorilla(ResultadosTestGorilla resultadosTestGorilla) {
-        this.resultadosTestGorilla = resultadosTestGorilla;
-    }
+
 }

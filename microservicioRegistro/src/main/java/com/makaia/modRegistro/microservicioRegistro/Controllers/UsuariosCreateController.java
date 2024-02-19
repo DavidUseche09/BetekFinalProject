@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("api1/v1/user")
+@RequestMapping("api/v1/user")
 public class UsuariosCreateController {
     @Autowired
     private UserService userService;
