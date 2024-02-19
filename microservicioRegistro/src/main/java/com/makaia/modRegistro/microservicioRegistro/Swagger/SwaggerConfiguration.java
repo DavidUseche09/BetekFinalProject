@@ -34,9 +34,4 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
                 }
 )
 public class SwaggerConfiguration {
-<<<<<<< HEAD
 }
-=======
-
-}
->>>>>>> b12eb7cd93e165878b4bb46e0ea3cb5dcf7140aa
