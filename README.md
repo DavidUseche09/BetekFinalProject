@@ -1,5 +1,5 @@
 # Bienvenidos!
-# API REST MICROSERVICIO FORMULARIO
+# API REST MICROSERVICIO REGISTRO Y PRUEBA TÉCNICA 
 Esta aplicación fue diseñada en el marco del proyecto integrador del Bootcamp de backend de Makaia como resultado de la implementación de los conocimientos adquiridos en la formación académica.
 
 ## Diagrama de procesos API
